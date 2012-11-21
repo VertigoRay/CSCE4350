@@ -1,0 +1,10 @@
+<h1>CSCE4350</h1>
+<h2>Profile</h2>
+{% if user.is_authenticated %}
+    <h3>{{ user.username }}</h3>
+    <ul>
+        <li>ID:  {{ user.id }}</li>
+    </ul>
+{% else %}
+    <h3>{{ user.username }}</h3>
+{% endif %}
