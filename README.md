@@ -1,3 +1,4 @@
-This project is a quick demo site.  It's for a class project.
+CSCE 4350
+Retail Site Project
 
-CW, paste in the assignment, please.
+Details in the GitHub Project Wiki.
