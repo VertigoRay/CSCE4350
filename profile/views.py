@@ -8,5 +8,5 @@ def index(request):
     return render(request, 'profile/index.html', {'latest_user_list': latest_user_list})
 
 def detail(request, username):
-    user = get_object_or_404(username=username)
+    user = get_object_or_404(User, username=username)
     return render(request, 'profile/detail.html', {'user': user})

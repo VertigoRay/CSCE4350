@@ -22,9 +22,9 @@ class Published(SimpleListFilter):
         in the right sidebar.
         """
         return (
-            ('day', _('published last day')),
-            ('week', _('published last week')),
-            ('month', _('published last month')),
+            ('day', _('in last day')),
+            ('week', _('in last week')),
+            ('month', _('in last month')),
         )
 
     def queryset(self, request, queryset):

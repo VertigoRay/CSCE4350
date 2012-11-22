@@ -157,3 +157,7 @@ LOGGING = {
 # For UserProfile
 #   Ref:  http://stackoverflow.com/a/965883/615422
 AUTH_PROFILE_MODULE = 'profile.models.UserProfile'
+
+import os
+if os.uname()[1] == 'dev-v3pu':
+    from settings_dev_v3pu import *

@@ -3,7 +3,8 @@
 {% if user.is_authenticated %}
     <h3>{{ user.username }}</h3>
     <ul>
-        <li>ID:  {{ user.id }}</li>
+        <li>ID: {{ user.id }}</li>
+        <li>Email: {{ user.email }}</li>
     </ul>
 {% else %}
     <h3>{{ user.username }}</h3>
