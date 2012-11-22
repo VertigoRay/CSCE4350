@@ -31,7 +31,7 @@ print_r($out);
 
 if ($out[0] == 'Already up-to-date.') {
 	`touch /tmp/AR_FILE_GITHUB_V3PU_HOOK`;
-	echo 'AR file created.'
+	echo 'AR file created.';
 }
 ?>
 </pre>
