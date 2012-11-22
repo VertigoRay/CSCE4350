@@ -1,6 +1,6 @@
 # Django settings for csce4350 project.
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -11,11 +11,11 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/home/vertigoray/csce4350.db',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'com_worleybox_csce4350',                      # Or path to database file if using sqlite3.
+        'USER': 'worley_csce4350',                      # Not used with sqlite3.
+        'PASSWORD': 'BFHrhbkU6u84m7Amsnpm46pBTvERCfk',                  # Not used with sqlite3.
+        'HOST': 'mysql.vertigion.com',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
@@ -106,7 +106,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/mnt/ras0196/Documents/GitHub/CSCE4350/templates',
+    '/home/lurkin4life/com.worleybox.csce4350/templates',
 )
 
 INSTALLED_APPS = (
