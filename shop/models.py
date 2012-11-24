@@ -6,7 +6,7 @@ from django.utils import timezone
 from profile.models import *
 
 class Category(models.Model):
-    pid = models.ForeignKey('self', verbose_name='Parent Category', blank=True, null=True)
+    pid = models.ForeignKey('self', verbose_name='Parent Category')
     name = models.CharField('category name', max_length=100)
 
     def __str__(self):
@@ -26,8 +26,9 @@ class Order(models.Model):
     user = models.ForeignKey(User)
     billing = models.ForeignKey(Billing)
     status = models.CharField('preferred shipping method', max_length=2, choices=ORDER_STATUSES)
-    statusinfo = models.TextField('shipping status info')
-    pub_date = models.DateTimeField('date published')
+    statusinfo = models.TextField('shipping status info', blank=True, null=True)
+    mod_date = models.DateTimeField('modified', auto_now=True)
+    pub_date = models.DateTimeField('published', auto_now_add=True)
 
     def __str__(self):
         return "%s - %s" % (self.user, self.id)
@@ -53,7 +54,7 @@ class Product (models.Model):
     order = models.OneToOneField(Order)
     code = models.CharField('product code', max_length=100, help_text='Used for easier searches.  For books, enter the ISBN; for music, enter the ISMN; for others, enter a useful code such as the UPC code.')
     title = models.CharField(max_length=50)
-    desc = models.TextField('description', help_text='Description of your product.  Images can be stored on a 3rd party site, such ')
+    description = models.TextField('description', help_text='Description of your product.  Images can be stored on a 3rd party site, such ')
     price = models.DecimalField(max_digits=6, decimal_places=2)
     condition = models.CharField('product condition', max_length=1, choices=PRODUCT_CONDITIONS, default='u')
     shiptype = models.CharField('preferred shipping method', max_length=3, choices=SHIP_TYPES, default=0, help_text='How the product will be delivered. Default: Local Pick-up')
@@ -61,7 +62,7 @@ class Product (models.Model):
     enabled = models.BooleanField('is enabled', default=True, help_text='Determines if this product is currently listed/available.')
     expiration = models.DateTimeField('expiration date', help_text='Date the product is automatically disabled.')
     sold = models.DateTimeField('date sold')
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField('published', auto_now_add=True)
 
     def __str__(self):
         return self.title

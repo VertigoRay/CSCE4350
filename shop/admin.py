@@ -60,7 +60,7 @@ class ProductAdmin(admin.ModelAdmin):
     readonly_fields = ('pub_date','order',)
     fieldsets = [
         (None,                  {'fields': ['user','category','enabled']}),
-        ('Product Details',     {'fields': ['title', 'desc', 'price', 'condition']}),
+        ('Product Details',     {'fields': ['title', 'description', 'price', 'condition']}),
         ('Shipping Details',    {'fields': ['shiptype', 'shipfee']}),
         ('Date information',    {'fields': ['pub_date', 'expiration', 'sold'], 'classes': ['collapse']}),
     ]

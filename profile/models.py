@@ -27,11 +27,11 @@ class Address (models.Model):
     user = models.ForeignKey(User)
     addtype = models.CharField('address type', max_length=1, choices=ADDRESS_TYPES)
     addr1 = models.CharField('address line 1', max_length=100)
-    addr2 = models.CharField('address line 2', max_length=100)
+    addr2 = models.CharField('address line 2', max_length=100, null=True, blank=True)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=2)
     zipcode = models.CharField('zip', max_length=5)
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField('published', auto_now_add=True)
 
     def __str__(self):
         return "%s - %s" % (self.user, self.addtype)
@@ -56,16 +56,23 @@ class Billing(models.Model):
     )
 
     user = models.ForeignKey(User)
-    desc = models.CharField('card description', max_length=100)
+    description = models.CharField('card description', max_length=100)
     name = models.CharField('name on card', max_length=100)
     ccnum = models.CharField('credit card number', max_length=16)
     expirationm = models.IntegerField('expiration month', max_length=100, choices=MONTHS)
     expirationy = models.IntegerField('expiration year', max_length=100)
     ccid = models.CharField('credit card name', max_length=3)
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField('published', auto_now_add=True)
 
     def __str__(self):
         return "%s - %s" % (self.user, self.title)
 
     def __unicode__(self):
         return "%s - %s" % (self.user - self.title)
+
+class Rating(models.Model):
+    buyer = models.ForeignKey(User, related_name='Buyer')
+    seller = models.ForeignKey(User, related_name='Seller')
+    rating = models.PositiveSmallIntegerField()
+    comment = models.TextField(blank=True)
+    pub_date = models.DateTimeField('published', auto_now_add=True)
