@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.shortcuts import render, get_list_or_404, get_object_or_404
 
 def index(request):
-    return HttpResponse("<h1>CSCE4350</h1><h2>Shop</h2>")
+    return render(request, 'shop/index.html')

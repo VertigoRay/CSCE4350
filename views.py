@@ -1,4 +1,7 @@
-from django.http import HttpResponse
+from django.shortcuts import render, get_list_or_404, get_object_or_404
 
 def index(request):
-    return HttpResponse('<h1>CSCE4350</h1><ul><li><a href="/admin">admin</a></li><li><a href="/profile">profile</a></li><li><a href="/shop">shop</a></li></ul>')
+    return render(request, 'index.html')
+
+def account_index(request):
+    return render(request, 'registration/index.html')
