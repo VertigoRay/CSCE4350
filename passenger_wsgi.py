@@ -1,6 +1,6 @@
 import sys, os
 
-INTERP = os.path.join(os.environ['HOME'], '.virtualenvs', 'project_name', 'bin', 'python')
+INTERP = os.path.join(os.environ['HOME'], '.virtualenv', 'project_name', 'bin', 'python')
 if sys.executable != INTERP:
     os.execl(INTERP, INTERP, *sys.argv)
 
