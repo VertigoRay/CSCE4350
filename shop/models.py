@@ -66,7 +66,7 @@ class Order(models.Model):
     )
 
     user = models.ForeignKey(User)
-    order = models.OneToOneField(Product)
+    product = models.OneToOneField(Product)
     billing = models.ForeignKey(Billing)
     status = models.CharField('preferred shipping method', max_length=2, choices=ORDER_STATUSES)
     statusinfo = models.TextField('shipping status info', blank=True, null=True)

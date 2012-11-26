@@ -24,6 +24,7 @@ def product_add(request):
         form = ProductAddForm()
  
     variables = RequestContext(request, {
-        'form': form
+        'title': 'Add Product';
+        'form': form;
     })
     return render_to_response('shop/product_add.html', variables)

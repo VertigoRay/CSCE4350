@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 {% load url from future %}
 
+{% block pretitle %}{% endblock %}
+{% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
 {% block content %}
-<h1>Add Product</h1>
-<form action="/contact/" method="post">{% csrf_token %}
-    {{ form }}
+{% block object-tools %}{% endblock %}
+<form action="/productadd/" method="post">{% csrf_token %}
+    {{ form.as_p }}
     <input type="submit" value="Submit" />
 </form>
-<strong>Variables:</strong><br />{{ variables }}
+{% if variables %}<h1>Variables</h1>{{ variables }}{% endif %}
 {% endblock %}
+{% block sidebar %}{% endblock %}
