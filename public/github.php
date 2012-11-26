@@ -36,12 +36,6 @@ $out = array();
 $exec = exec('cd /var/www/vertigion; git reset --hard HEAD; git pull', $out);
 print_r($out);
 ?>
-</pre><pre>
-<?php
-$run = array();
-$execr = exec('/home/lurkin4life/.virtualenv/csce4350/bin/python /home/lurkin4life/com.worleybox.csce4350/manage.py runserver 0.0.0.0:4498 &', $run);
-print_r($run);
-?>
 </pre>
 <?php
 if ($out[0] == 'Already up-to-date.') {
