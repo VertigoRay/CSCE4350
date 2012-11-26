@@ -4,7 +4,7 @@ from django.template import Context, loader
 from profile.models import *
 
 def index(request):
-    user_list = get_list_or_404(User)
+    user_list = get_list_or_404(User.objects.order_by('name'))
     return render(request, 'profile/index.html', {'user_list': user_list})
 
 def detail(request, username):
