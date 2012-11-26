@@ -2,3 +2,4 @@
 
 Django
 django-registration
+MySQL-python
