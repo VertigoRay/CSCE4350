@@ -38,12 +38,8 @@ print_r($out);
 ?>
 </pre><pre>
 <?php
-$run = array();
-$execr = exec('/home/lurkin4life/.virtualenv/csce4350/bin/python /home/lurkin4life/com.worleybox.csce4350/manage.py runserver 0.0.0.0:4498 &', $run);
-print_r($run);
-?>
-</pre>
-<?php
+`/home/lurkin4life/.virtualenv/csce4350/bin/python /home/lurkin4life/com.worleybox.csce4350/manage.py runserver 0.0.0.0:4498 &`
+
 if ($out[0] == 'Already up-to-date.') {
 	`touch /tmp/AR_FILE_GITHUB_V3PU_HOOK`;
 	echo 'AR file created.';
