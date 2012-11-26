@@ -1,6 +1,5 @@
 <h1>GitHub</h1>
 <i>Post Commit Hook</i>
-<pre>
 <?php
 // The Public IP addresses for github hooks are: 207.97.227.253, 50.57.128.197, 108.171.174.178.
 // if (ip2long($_SERVER['REMOTE_ADDR']) == -1 || ip2long($_SERVER['REMOTE_ADDR'] === FALSE)) {
@@ -24,14 +23,29 @@
 // 			die('Not Authorized!');
 // 	}
 // }
-
+?>
+<pre>
+<?php
+$kill = array();
+$execk = exec('killall -9 /home/lurkin4life/.virtualenv/csce4350/bin/python', $kill);
+print_r($kill);
+?>
+</pre><pre>
+<?php
 $out = array();
 $exec = exec('cd /var/www/vertigion; git reset --hard HEAD; git pull', $out);
 print_r($out);
-
+?>
+</pre><pre>
+<?php
+$run = array();
+$execr = exec('/home/lurkin4life/.virtualenv/csce4350/bin/python /home/lurkin4life/com.worleybox.csce4350/manage.py runserver 0.0.0.0:4498 &', $run)
+print_r($run);
+?>
+</pre>
+<?php
 if ($out[0] == 'Already up-to-date.') {
 	`touch /tmp/AR_FILE_GITHUB_V3PU_HOOK`;
 	echo 'AR file created.';
 }
 ?>
-</pre>
