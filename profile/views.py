@@ -4,7 +4,7 @@ from django.template import Context, loader
 from profile.models import *
 
 def index(request):
-    latest_user_list = User.objects.order_by('-date_joined')[:5]
+    latest_user_list = User.objects.order_by('name')
     return render(request, 'profile/index.html', {'latest_user_list': latest_user_list})
 
 def detail(request, username):
