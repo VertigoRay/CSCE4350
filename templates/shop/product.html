@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block pretitle %}{% endblock %}
+{% block content_title %}{% if product.title %}<h1>{{ product.title }}</h1>{% endif %}{% endblock %}
+{% block content %}
+{% block object-tools %}{% endblock %}
+    <ul>
+        <li>Seller: <a href="/profile/{{ product.user }}">{{ product.user }}</a></li>
+        <li>Price: {{ product.price }}</li>
+        <li>Condition: {{ product.condition }}</li>
+        <li>Code: {{ product.code }}</li>
+        <li>Shipping Method: {{ product.shiptype }}</li>
+        <li>Shipping Fee: {{ product.shipfee }}</li>
+        <li>Posted: {{ product.pub_date }}</li>
+    </ul>
+    {{ product.description }}
+{% endblock %}
+{% block sidebar %}{% endblock %}

@@ -9,7 +9,29 @@ class ProductAddForm(ModelForm):
         model = Product
 
 def index(request):
-    return render(request, 'shop/index.html')
+    if 'q' in request.GET:
+        variables = RequestContext(request, {
+            'title':    'Shop',
+            'search':   'You searched for: %r' % request.GET['q'],
+            'products':  get_list_or_404(Product, title__icontains=request.GET['q']),
+        })
+    else:
+        variables = RequestContext(request, {
+            'title': 'Shop',
+            'category': Category.objects.all(),
+        })
+    return render(request, 'shop/index.html', variables)
+
+def category(request, category):
+    variables = RequestContext(request, {
+        'title':    category,
+        'products': get_list_or_404(Product, category__name__exact=category),
+    })
+    return render(request, 'shop/category.html', variables)
+
+def product(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    return render(request, 'shop/product.html', {'product': product})
 
 def product_add(request):
     """
@@ -24,7 +46,7 @@ def product_add(request):
         form = ProductAddForm()
  
     variables = RequestContext(request, {
-        'title': 'Add Product';
-        'form': form;
+        'title': 'Add Product',
+        'form': form,
     })
     return render_to_response('shop/product_add.html', variables)

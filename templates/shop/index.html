@@ -1,3 +1,39 @@
+{% extends "base.html" %}
 {% load url from future %}
-<h1>CSCE4350</h1>
-<h2>Shop</h2>
+
+{% block pretitle %}{% endblock %}
+{% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+{% block content %}
+{% block object-tools %}{% endblock %}
+    <form action="/shop/" method="get">
+        <input type="text" name="q">
+        <input type="submit" value="Search">
+    </form>
+    {% if search %}
+        <strong>{{ search.name }}</strong>
+        <h2>Results</h2>
+        {% if products %}
+            <p>Found {{ products|length }} product{{ products|pluralize }}.</p>
+             <table>
+                {% for product in products %}
+                    {% cycle 'row_odd' 'row_even' as rowcolors silent %}
+                    <tr class="{{ rowcolors }}">{% include "shop/product_td.html " %}</tr>
+                {% endfor %}
+             </table>
+        {% else %}
+            <p>No products matched your search criteria.</p>
+        {% endif %}
+    {% else %}
+        {% regroup category by pid as category_by_pid %}
+        {% for p in category_by_pid %}
+            <h2>{{ p.grouper }}</h2>
+            <ul>
+            {% for c in p.list %}
+                <li><a href="/shop/{{ c.name }}">{{ c.name }}</a></li>
+            {% endfor %}
+            </ul>
+        {% endfor %}
+    {% endif %}
+{% if category %}<h1>Category</h1>{{ category }}{% endif %}
+{% endblock %}
+{% block sidebar %}{% endblock %}

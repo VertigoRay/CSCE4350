@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block pretitle %}{% endblock %}
+{% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+{% block content %}
+{% block object-tools %}{% endblock %}
+    <table>
+        {% for product in products %}
+            {% cycle 'row_odd' 'row_even' as rowcolors silent %}
+            <tr class="{{ rowcolors }}">{% include "shop/product_td.html " %}</tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+{% block sidebar %}{% endblock %}
