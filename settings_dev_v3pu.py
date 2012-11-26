@@ -62,7 +62,7 @@ DATABASES = {
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/mnt/ras0196/Documents/CSCE4350/com.worleybox.csce4350.genizah/'
+# STATIC_ROOT = '/mnt/ras0196/Documents/CSCE4350/com.worleybox.csce4350.genizah/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -89,12 +89,12 @@ STATIC_ROOT = '/mnt/ras0196/Documents/CSCE4350/com.worleybox.csce4350.genizah/'
 
 # ROOT_URLCONF = 'urls'
 
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-	'/mnt/ras0196/Documents/GitHub/CSCE4350/templates',
-)
+# TEMPLATE_DIRS = (
+#     Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+#     Always use forward slashes, even on Windows.
+#     Don't forget to use absolute paths, not relative paths.
+# 	'%s/templates' % os.getcwd(),
+# )
 
 # INSTALLED_APPS = (
 #     'django.contrib.auth',
