@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_list_or_404, get_object_or_404
-from django.template import Context, loader
+from django.template import Context, loader, RequestContext
 from profile.models import *
 
 def index(request):
