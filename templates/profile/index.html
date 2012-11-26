@@ -1,9 +1,9 @@
 {% load url from future %}
 <h1>CSCE4350</h1>
 <h2>Profile</h2>
-{% if latest_user_list %}
+{% if user_list %}
     <ul>
-    {% for user in latest_user_list %}
+    {% for user in user_list %}
         <li><a href="{% url 'profile:detail' user.username %}">{{ user.username }}</a></li>
     {% endfor %}
     </ul>
