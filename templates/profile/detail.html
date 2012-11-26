@@ -1,11 +1,17 @@
-<h1>CSCE4350</h1>
-<h2>Profile</h2>
-{% if user.is_authenticated %}
-    <h3>{{ user.username }}</h3>
-    <ul>
-        <li>ID: {{ user.id }}</li>
-        <li>Email: {{ user.email }}</li>
-    </ul>
-{% else %}
-    <h3>{{ user.username }}</h3>
-{% endif %}
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block pretitle %}{% endblock %}
+{% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+{% block content %}
+{% block object-tools %}{% endblock %}
+    {% if user.is_authenticated %}
+	    <ul>
+	        <li>ID: {{ user.id }}</li>
+	        <li>Email: {{ user.email }}</li>
+	    </ul>
+	{% else %}
+	    <h3>{{ user.username }}</h3>
+	{% endif %}
+{% endblock %}
+{% block sidebar %}{% endblock %}
