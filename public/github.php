@@ -39,7 +39,7 @@ print_r($out);
 </pre><pre>
 <?php
 $run = array();
-$execr = exec('/home/lurkin4life/.virtualenv/csce4350/bin/python /home/lurkin4life/com.worleybox.csce4350/manage.py runserver 0.0.0.0:4498 &', $run)
+$execr = exec('/home/lurkin4life/.virtualenv/csce4350/bin/python /home/lurkin4life/com.worleybox.csce4350/manage.py runserver 0.0.0.0:4498 &', $run);
 print_r($run);
 ?>
 </pre>
