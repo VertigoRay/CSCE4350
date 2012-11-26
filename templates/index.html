@@ -4,11 +4,13 @@
 {% block pretitle %}{% endblock %}
 {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
 {% block content %}
-{% block object-tools %}{% endblock %}
-    <ul>
+	{% block object-tools %}{% endblock %}
+	<p>CSCE 4350 Retail Site Project</p>
+{% endblock %}
+{% block sidebar %}
+	<ul>
 	    <li><a href="/admin">admin</a></li>
 	    <li><a href="/profile">profile</a></li>
 	    <li><a href="/shop">shop</a></li>
 	</ul>
 {% endblock %}
-{% block sidebar %}{% endblock %}
