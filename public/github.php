@@ -38,7 +38,7 @@ print_r($out);
 ?>
 </pre><pre>
 <?php
-`/home/lurkin4life/.virtualenv/csce4350/bin/python /home/lurkin4life/com.worleybox.csce4350/manage.py runserver 0.0.0.0:4498 &`;
+`/home/lurkin4life/.virtualenv/csce4350/bin/python /home/lurkin4life/com.worleybox.csce4350/manage.py runserver 0.0.0.0:4498 > /dev/null 2>/dev/null &`;
 
 if ($out[0] == 'Already up-to-date.') {
 	`touch /tmp/AR_FILE_GITHUB_V3PU_HOOK`;
