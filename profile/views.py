@@ -13,6 +13,6 @@ def index(request):
 def detail(request, username):
     variables = RequestContext(request, {
         'title': username,
-        'user':	get_object_or_404(User, username=username),
+        'user_profile':	get_object_or_404(User, username=username),
     })
     return render(request, 'profile/detail.html', variables)
