@@ -1,17 +1,14 @@
 {% extends "base.html" %}
 {% load url from future %}
 
+{% block branding %}CSCE4350{% endblock %}
 {% block pretitle %}{% endblock %}
 {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
 {% block content %}
-{% block object-tools %}{% endblock %}
-    {% if user.is_authenticated %}
-	    <ul>
-	        <li>ID: {{ user.id }}</li>
-	        <li>Email: {{ user.email }}</li>
-	    </ul>
-	{% else %}
-	    <h3>{{ user.username }}</h3>
-	{% endif %}
+	{% block object-tools %}{% endblock %}
+	<ul>
+		<li>ID: {{ user.id }}</li>
+		<li>Email: {{ user.email }}</li>
+	</ul>
 {% endblock %}
 {% block sidebar %}{% endblock %}
