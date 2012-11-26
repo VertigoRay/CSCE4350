@@ -1,6 +1,14 @@
-<h1>CSCE4350</h1>
-<ul>
-    <li><a href="/admin">admin</a></li>
-    <li><a href="/profile">profile</a></li>
-    <li><a href="/shop">shop</a></li>
-</ul>
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block pretitle %}{% endblock %}
+{% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+{% block content %}
+{% block object-tools %}{% endblock %}
+    <ul>
+	    <li><a href="/admin">admin</a></li>
+	    <li><a href="/profile">profile</a></li>
+	    <li><a href="/shop">shop</a></li>
+	</ul>
+{% endblock %}
+{% block sidebar %}{% endblock %}
