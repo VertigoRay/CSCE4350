@@ -15,27 +15,6 @@ class Category(models.Model):
     def __unicode__(self):
         return self.name
 
-class Order(models.Model):
-    ORDER_STATUSES = (
-        ('or','Order Placed'),
-        ('pr','Payment Received'),
-        ('os','Order Shipped'),
-        ('sr','Shipment Received'),
-    )
-
-    user = models.ForeignKey(User)
-    billing = models.ForeignKey(Billing)
-    status = models.CharField('preferred shipping method', max_length=2, choices=ORDER_STATUSES)
-    statusinfo = models.TextField('shipping status info', blank=True, null=True)
-    mod_date = models.DateTimeField('modified', auto_now=True)
-    pub_date = models.DateTimeField('published', auto_now_add=True)
-
-    def __str__(self):
-        return "%s - %s" % (self.user, self.id)
-
-    def __unicode__(self):
-        return "%s - %s" % (self.user, self.id)
-
 class Product (models.Model):
     SHIP_TYPES = (
         ('0','Local Pick-up'),
@@ -51,7 +30,6 @@ class Product (models.Model):
 
     user = models.ForeignKey(User)
     category = models.ForeignKey(Category)
-    order = models.OneToOneField(Order)
     code = models.CharField('product code', max_length=100, help_text='Used for easier searches.  For books, enter the ISBN; for music, enter the ISMN; for others, enter a useful code such as the UPC code.')
     title = models.CharField(max_length=50)
     description = models.TextField('description', help_text='Description of your product.  Images can be stored on a 3rd party site, such ')
@@ -78,3 +56,25 @@ class Product (models.Model):
 
     def was_published_within_month(self):
         return self.pub_date >= timezone.now() - timedelta(days=30)
+
+class Order(models.Model):
+    ORDER_STATUSES = (
+        ('or','Order Placed'),
+        ('pr','Payment Received'),
+        ('os','Order Shipped'),
+        ('sr','Shipment Received'),
+    )
+
+    user = models.ForeignKey(User)
+    order = models.OneToOneField(Product)
+    billing = models.ForeignKey(Billing)
+    status = models.CharField('preferred shipping method', max_length=2, choices=ORDER_STATUSES)
+    statusinfo = models.TextField('shipping status info', blank=True, null=True)
+    mod_date = models.DateTimeField('modified', auto_now=True)
+    pub_date = models.DateTimeField('published', auto_now_add=True)
+
+    def __str__(self):
+        return "%s - %s" % (self.user, self.id)
+
+    def __unicode__(self):
+        return "%s - %s" % (self.user, self.id)

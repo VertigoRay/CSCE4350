@@ -60,7 +60,7 @@ STATIC_ROOT = '/home/lurkin4life/com.worleybox.csce4350/static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+STATIC_URL = 'http://genizah.csce4350.worleybox.com/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
