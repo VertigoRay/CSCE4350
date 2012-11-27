@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+l{% extends "base.html" %}
 {% load url from future %}
 
 {% block branding %}CSCE4350{% endblock %}
@@ -8,7 +8,9 @@
 	{% block object-tools %}{% endblock %}
 	<ul>
 		<li>ID: {{ user_profile.id }}</li>
-		<li>Email: {{ user_profile.first_name }}</li>
+		<li>Email: {{ user_profile.email}}</li>
+		<li>Member since: {{ user_profile.date_joined}}</li>
+		<li>Rating: "Insert Rating here" </li>
 	</ul>
 {% endblock %}
 {% block sidebar %}{% endblock %}
