@@ -10,10 +10,10 @@ def index(request):
     })
     return render(request, 'profile/index.html', variables)
 
-def detail(request, username):
+def detail(request, username, phone):
     variables = RequestContext(request, {
         'title': username,
         'user_profile':	get_object_or_404(User, username=username),
-        'user_phone': get_object_or_404(UserProfile, phone),
+        'user_phone': get_object_or_404(UserProfile, phone=phone),
     })
     return render(request, 'profile/detail.html', variables)
