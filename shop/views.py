@@ -11,9 +11,10 @@ class ProductAddForm(ModelForm):
 def index(request):
     if 'q' in request.GET:
         variables = RequestContext(request, {
-            'title':    'Shop',
-            'search':   'You searched for: %r' % request.GET['q'],
-            'products':  get_list_or_404(Product, title__icontains=request.GET['q']),
+            'title': 'Shop',
+            'search': 'You searched for: %r' % request.GET['q'],
+            # 'products': get_list_or_404(Product, title__icontains=request.GET['q']),
+            'products': Product.objects.filter(title__icontains=request.GET['q']),
         })
     else:
         variables = RequestContext(request, {
