@@ -13,7 +13,7 @@ def index(request):
 def detail(request, username):
     user_profile = get_object_or_404(User, username=username)
     user_profile_billing = get_object_or_404(Billing, user_id=user_profile.id)
-    user_profile_address = get_object_or_404(Address, user_id=user_profile.id)[0]
+    user_profile_address = get_object_or_404(Address, user_id=user_profile.id[0])
     variables = RequestContext(request, {
         'title': username,
         'user_profile': user_profile,
