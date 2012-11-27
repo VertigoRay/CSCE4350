@@ -5,7 +5,15 @@
 {% block pretitle %}{% endblock %}
 {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
 {% block content %}
-	{% block object-tools %}{% endblock %}
+	{% block object-tools %}
+        <div style="clear: right; float: right;">
+            <ul>
+                <li><a href="edit/">Edit Profile</a></li>
+                <li><a href="orders/">Order History</a></li>
+                <li><a href="products/">My Products</a></li>
+            </ul>   
+        </div>
+    {% endblock %}
 	<ul>
 		<li>ID: {{ user_profile.id }}</li>
 		<li>Email: {{ user_profile.email }}</li>
