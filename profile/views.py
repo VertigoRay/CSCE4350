@@ -12,8 +12,9 @@ class RateForm(ModelForm):
         exclude = ('seller','buyer',)
 
 def index(request):
+    title = 'Profiles'
     variables = RequestContext(request, {
-        'title':    'Profiles',
+        'title': title,
         'user_list':  get_list_or_404(User.objects.order_by('username')),
     })
     return render(request, 'profile/index.html', variables)
@@ -31,23 +32,26 @@ def detail(request, username):
     return render(request, 'profile/detail.html', variables)
 
 def edit(request, username):
+    title = 'Edit Profile'
     variables = RequestContext(request, {
-        'title': username,
+        'title': title,
         'user_profile': get_object_or_404(User, username=username),
     })
     return render(request, 'profile/edit.html', variables)
 
 def orders(request, username):
+    title = 'Order History'
     variables = RequestContext(request, {
-        'title': 'Order History - %s' % username,
+        'title': title,
         'user_profile': get_object_or_404(User, username=username),
         'orders': Order.objects.filter(user__username=username).order_by('-id'),
     })
     return render(request, 'profile/orders.html', variables)
 
 def products(request, username):
+    title = 'My Products'
     variables = RequestContext(request, {
-        'title': 'My Products - %s' % username,
+        'title': title,
         'user_profile': get_object_or_404(User, username=username),
         'products': Product.objects.filter(user__username=username).order_by('-pub_date'),
         'orders': Order.objects.filter(product__user__username=username).order_by('-id'),
@@ -55,6 +59,7 @@ def products(request, username):
     return render(request, 'profile/products.html', variables)
 
 def rate(request, username):
+    title = 'Rate'
     if request.method == 'POST':
         seller = username
         buyer = 'cworley' # This needs to reference the current logged on user. Note:  'user.username' doesn't work.
@@ -66,7 +71,7 @@ def rate(request, username):
         form = RateForm()
 
     variables = RequestContext(request, {
-        'title': 'Rate - %s' % username,
+        'title': title,
         'user_profile':	get_object_or_404(User, username=username),
         'form': form,
     })

@@ -1,8 +1,11 @@
-{% extends "base.html" %}
+{% extends "profile/detail.html" %}
 {% load url from future %}
 
 {% block pretitle %}{% endblock %}
-{% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+{% block content_title %}{% if title %}<h1>{{ title }} - {{ user.username }}</h1>{% endif %}{% endblock %}
+{% block breadcrumbs %}
+    {{block.super}} &raquo; <a href="/profile/{{ user_profile }}/rate">{{ title }}</a>
+{% endblock %}
 {% block content %}
 {% block object-tools %}{% endblock %}
 <form action="/profile/{{ user_profile.username }}/rate/" method="post">{% csrf_token %}
