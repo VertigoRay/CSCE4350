@@ -42,6 +42,7 @@ def products(request, username):
     variables = RequestContext(request, {
         'title': 'My Products - %s' % username,
         'user_profile':	get_object_or_404(User, username=username),
-        'products': Product.objects.filter(order__user__username=username).order_by('-pub_date')
+        'products': Product.objects.filter(user__username=username).order_by('-pub_date'),
+        'orders': Order.objects.filter(product__user__username=username).order_by('-id'),
     })
     return render(request, 'profile/products.html', variables)
