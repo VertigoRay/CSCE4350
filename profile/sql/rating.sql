@@ -1,7 +1,7 @@
 -- rating.sql
 -- USER RATING TABLE -- --verified
 INSERT INTO profile_rating (buyer_id, seller_id, rating, comment) VALUES
-    (1, 4, 8, 'seller was good responded quickly, fair asking price'),
+    (2, 4, 8, 'seller was good responded quickly, fair asking price'),
     (2, 6, 9, 'responded quickly, fair asking price'),
     (2, 6, 10, 'good asking price, quick response'),
     (3, 2, 8, 'seller was good, good asking price'),

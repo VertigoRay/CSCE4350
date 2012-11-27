@@ -1,7 +1,7 @@
 -- address.sql
 -- ADDRESS TABLE -- --verified
 INSERT INTO profile_address (user_id, addtype, addr1, addr2, city, state, zipcode) VALUES
-  (2, 's','234 Main St',null,'Fort Worth','TX','76179'),
+    (2, 's','234 Main St',null,'Fort Worth','TX','76179'),
 	(2, 'b','234 Main St',null,'Fort Worth','TX','76179'),
 	(3, 's','345 Main St',null,'Denton','TX','76201'),
 	(3, 'b','345 Main St',null,'Denton','TX','76201'),
