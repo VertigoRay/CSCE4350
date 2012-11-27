@@ -18,6 +18,7 @@ def detail(request, username):
         'title': username,
         'user_profile': user_profile,
         'user_profile_billing': user_profile_billing,
+        'user_profile_address': user_profile_address,
     })
     return render(request, 'profile/detail.html', variables)
 
