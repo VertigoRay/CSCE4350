@@ -48,8 +48,6 @@ class Billing(models.Model):
         ('8','August'),
         ('9','September'),
         ('10','October'),
-        ('11','November'),
-        ('12','December'),
     )
 
     user = models.ForeignKey(User)
@@ -65,8 +63,21 @@ class Billing(models.Model):
         return "%s - %s" % (self.user, self.title)
 
 class Rating(models.Model):
+    RATE = (
+        ('1','1'),
+        ('2','2'),
+        ('3','3'),
+        ('4','4'),
+        ('5','5'),
+        ('6','6'),
+        ('7','7'),
+        ('8','8'),
+        ('9','9'),
+        ('10','10'),
+    )
+    
     buyer = models.ForeignKey(User, related_name='Buyer')
     seller = models.ForeignKey(User, related_name='Seller')
-    rating = models.PositiveSmallIntegerField()
+    rating = models.PositiveSmallIntegerField(choices=RATE)
     comment = models.TextField(blank=True)
     pub_date = models.DateTimeField('published', auto_now_add=True)

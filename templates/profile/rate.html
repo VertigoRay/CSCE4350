@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block pretitle %}{% endblock %}
+{% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+{% block content %}
+{% block object-tools %}{% endblock %}
+<form action="/profile/{{ user_profile.username }}/rate/" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+{% if variables %}<h1>Variables</h1>{{ variables }}{% endif %}
+{% endblock %}
+{% block sidebar %}{% endblock %}
