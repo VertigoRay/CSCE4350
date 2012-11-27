@@ -20,17 +20,20 @@ def detail(request, username):
 def edit(request, username):
     variables = RequestContext(request, {
         'title': username,
+        'user_profile': get_object_or_404(User, username=username),
     })
     return render(request, 'profile/edit.html', variables)
 
 def orders(request, username):
     variables = RequestContext(request, {
         'title': username,
+        'user_profile': get_object_or_404(User, username=username),
     })
     return render(request, 'profile/orders.html', variables)
 
 def products(request, username):
     variables = RequestContext(request, {
         'title': username,
+        'user_profile':	get_object_or_404(User, username=username),
     })
     return render(request, 'profile/products.html', variables)
