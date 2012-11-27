@@ -14,7 +14,7 @@
             {% endcomment %}
             <tr class="{{ rowcolors }}">
             	<td>
-				    <strong><a href="/shop/{{product.title}}">{{product.title}}</a></strong><br /><i>{{product.description|truncatechars:50}}</i>
+				    <strong><a href="/shop/{{product.id}}">{{product.title}}</a></strong><br /><i>{{product.description|truncatechars:50}}</i>
 				</td><td>
 				    <strong>${{product.price}}</strong><br /><i><a href="/profile/{{product.user}}">{{product.user}}</a></i>
 				</td>

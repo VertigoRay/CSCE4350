@@ -8,6 +8,24 @@
 	{% block object-tools %}
         {% include 'profile/sidebar.html' %}
     {% endblock %}
-	<p>My Products ... eventually!</p>
+	{% if products|length > 0 %}
+        <p>Found {{ products|length }} product{{ products|pluralize }}.</p>
+         <table>
+            {% for product in products %}
+                {% cycle 'row_odd' 'row_even' as rowcolors silent %}
+                <tr class="{{ rowcolors }}">
+                    <td>
+                        <strong><a href="/shop/{{ product.id }}">{{ product.title }}</a></strong><br /><i>{{ product.description|truncatechars:50 }}</i>
+                    </td><td>
+                        <strong>${{ product.price }}</strong><br /><i><a href="/profile/{{ product.user }}">{{ product.user }}</a></i>
+                    </td><td>
+                        <a href="/shop/{{ product.id }}/edit/">edit</a><br /><a href="/shop/{{ product.id }}/deactivate/">deactivate</a>
+                    </td>
+                </tr>
+            {% endfor %}
+         </table>
+    {% else %}
+        <p>No Products found for {{ user_profile.username }}.</p>
+    {% endif %}
 {% endblock %}
 {% block sidebar %}{% endblock %}

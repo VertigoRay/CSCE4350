@@ -31,17 +31,17 @@ def edit(request, username):
     return render(request, 'profile/edit.html', variables)
 
 def orders(request, username):
-    orders = Order.objects.filter(user__username=username).order_by('-id')
     variables = RequestContext(request, {
-        'title': username,
+        'title': 'Order History - %s' % username,
         'user_profile': get_object_or_404(User, username=username),
-        'orders': orders,
+        'orders': Order.objects.filter(user__username=username).order_by('-id'),
     })
     return render(request, 'profile/orders.html', variables)
 
 def products(request, username):
     variables = RequestContext(request, {
-        'title': username,
+        'title': 'My Products - %s' % username,
         'user_profile':	get_object_or_404(User, username=username),
+        'products': Product.objects.filter(order__user__username=username).order_by('-pub_date')
     })
     return render(request, 'profile/products.html', variables)
