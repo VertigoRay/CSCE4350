@@ -25,18 +25,29 @@
         <div id="branding">
         {% block branding %}{% endblock %}
         </div>
-        {% if user.is_active and user.is_staff %}
+        {% if user.is_active %}
         <div id="user-tools">
             {% trans 'Welcome,' %}
             <strong>{% filter force_escape %}{% firstof user.first_name user.username %}{% endfilter %}</strong>.
             {% block userlinks %}
                 {% url 'django-admindocs-docroot' as docsroot %}
-                {% if docsroot %}
-                    <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> /
-                {% endif %}
-                <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a> /
+                {% if user.is_staff %}
+                    <a href="/admin/">{% trans 'Admin' %}</a> |
+                    {% if docsroot %}
+                        <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> |
+                    {% endif %}
+               {% endif %}
+                <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a> |
                 <a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a>
             {% endblock %}
+        </div>
+        {% else %}
+        <div id="user-tools">
+        <form id="login">
+        <font color="white"><label>Username<input type="text" name="s-user" id="s-user"></label></font>
+        <font color="white"><label>Password<input type="text" name="s-pass" id="s-pass"></label></font>
+        <input type="submit" class="submit" value="Login">
+        </form>
         </div>
         {% endif %}
         {% block nav-global %}{% endblock %}
