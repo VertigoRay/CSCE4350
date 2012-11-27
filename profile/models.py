@@ -36,9 +36,6 @@ class Address (models.Model):
     def __str__(self):
         return "%s - %s" % (self.user, self.addtype)
 
-    def __unicode__(self):
-        return "%s - %s" % (self.user, self.addtype)
-
 class Billing(models.Model):
     MONTHS = (
         ('1','January'),
@@ -66,9 +63,6 @@ class Billing(models.Model):
 
     def __str__(self):
         return "%s - %s" % (self.user, self.title)
-
-    def __unicode__(self):
-        return "%s - %s" % (self.user - self.title)
 
 class Rating(models.Model):
     buyer = models.ForeignKey(User, related_name='Buyer')

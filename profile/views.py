@@ -11,9 +11,12 @@ def index(request):
     return render(request, 'profile/index.html', variables)
 
 def detail(request, username):
+    user_profile = get_object_or_404(User, username=username)
+    user_profile_billing = get_object_or_404(Billing, user_id=user_profile.id)
     variables = RequestContext(request, {
         'title': username,
-        'user_profile': get_object_or_404(User, username=username),
+        'user_profile': user_profile,
+        'user_profile_billing': user_profile_billing,
     })
     return render(request, 'profile/detail.html', variables)
 
