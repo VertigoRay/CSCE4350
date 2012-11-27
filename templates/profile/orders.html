@@ -8,6 +8,22 @@
 	{% block object-tools %}
         {% include 'profile/sidebar.html' %}
     {% endblock %}
-	<p>Order History ... eventually!</p>
+	{% if orders|length > 0 %}
+        <p>Found {{ orders|length }} order{{ orders|pluralize }}.</p>
+         <table>
+            {% for order in orders %}
+                {% cycle 'row_odd' 'row_even' as rowcolors silent %}
+                <!-- <tr class="{{ rowcolors }}">{% include "profile/order_td.html " %}</tr> -->
+                <tr class="{{ rowcolors }}">
+                    <td><a href="/shop/product/{{ order.product.id }}">{{ order.product.title }}</a><br /><i>Purchased on: {{ order.pub_date }}</i></td>
+                    <td>{{ order.status }} <i>Updated: {{ order.mod_date }}</i><br />{{ order.statusinfo }}</td>
+                    <td align="right">{{ order.product.price }}<br /><a href="/profile/{{ order.product.user.username }}">{{ order.product.user.username }}</a> <a href="/profile/{{ order.product.user.username }}/rate/"></a></td>
+                </tr>
+            {% endfor %}
+         </table>
+    {% else %}
+        <p>Orders Length: {{ orders.length }}</p>
+        <p>No Order History found for {{ user_profile.username }}.</p>
+    {% endif %}
 {% endblock %}
 {% block sidebar %}{% endblock %}

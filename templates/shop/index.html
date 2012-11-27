@@ -17,17 +17,7 @@
              <table>
                 {% for product in products %}
                     {% cycle 'row_odd' 'row_even' as rowcolors silent %}
-                    {% comment %}
-                        This shoule work, but doesn't, so fkit
-                        <tr class="{{ rowcolors }}">{% include "shop/product_td.html " %}</tr>
-                    {% endcomment %}
-                    <tr class="{{ rowcolors }}">
-                        <td>
-                            <strong><a href="/shop/{{product.title}}">{{product.title}}</a></strong><br /><i>{{product.description|truncatechars:50}}</i>
-                        </td><td>
-                            <strong>${{product.price}}</strong><br /><i><a href="/profile/{{product.user}}">{{product.user}}</a></i>
-                        </td>
-                    </tr>
+                    <tr class="{{ rowcolors }}">{% include "shop/product_td.html " %}</tr>
                 {% endfor %}
              </table>
         {% else %}

@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.template import Context, loader, RequestContext
 from profile.models import *
+from shop.models import *
 
 def index(request):
     variables = RequestContext(request, {
@@ -30,9 +31,11 @@ def edit(request, username):
     return render(request, 'profile/edit.html', variables)
 
 def orders(request, username):
+    orders = Order.objects.filter(user__username=username).order_by('-id')
     variables = RequestContext(request, {
         'title': username,
         'user_profile': get_object_or_404(User, username=username),
+        'orders': orders,
     })
     return render(request, 'profile/orders.html', variables)
 
