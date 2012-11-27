@@ -1,15 +1,6 @@
-<!--
-Used to generate the body of the activation email. Should display a link the user can click to activate the account. This template has the following context:
+{% load humanize %}
+Someone, hopefully you, signed up for a new account at djangoproject.com using this email address. If it was you, and you'd like to activate and use your account, click the link below or copy and paste it into your web browser's address bar:
 
-activation_key
-The activation key for the new account.
+http://127.0.0.1:8000/accounts/activate/{{ activation_key }}/
 
-expiration_days
-The number of days remaining during which the account may be activated.
-
-site
-An object representing the site on which the user registered; depending on whether django.contrib.sites is installed, this may be an instance of either django.contrib.sites.models.Site (if the sites application is installed) or django.contrib.sites.models.RequestSite (if not). Consult the documentation for the Django sites framework for details regarding these objects’ interfaces.
-Note that the templates used to generate the account activation email use the extension .txt, not .html. Due to widespread antipathy toward and interoperability problems with HTML email, django-registration defaults to plain-text email, and so these templates should simply output plain text rather than HTML.
-
-To make use of the views from django.contrib.auth (which are set up for you by the default URLconf mentioned above), you will also need to create the templates required by those views. Consult the documentation for Django’s authentication system for details regarding these templates.
--->
+If you didn't request this, you don't need to do anything; you won't receive any more email from us, and the account will expire automatically in {{ expiration_days|apnumber }} days.
