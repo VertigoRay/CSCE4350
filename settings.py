@@ -98,6 +98,17 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.contrib.messages.context_processors.messages',
+    'django.core.context_processors.request',
+)
+
 ROOT_URLCONF = 'urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
@@ -159,8 +170,16 @@ LOGGING = {
 AUTH_PROFILE_MODULE = 'profile.models.UserProfile'
 
 # django-registration
-# One-week activation window; you may, of course, use a different value.
-ACCOUNT_ACTIVATION_DAYS = 7
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
+
+# Django Default Emailer Options
+EMAIL_HOST = 'a1.balanced.homie.mail.dreamhost.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'noreply@csce4350.worleybox.com'
+EMAIL_HOST_PASSWORD = '2inaspa!'
+EMAIL_SUBJECT_PREFIX = '[CSCE4350] '
+DEFAULT_FROM_EMAIL = 'CSCE WorleyBox <noreply@csce4350.worleybox.com>'
 
 import os
 if os.uname()[1] == 'dev-v3pu':

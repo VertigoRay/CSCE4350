@@ -3,9 +3,10 @@ from django.template import RequestContext
 
 def index(request):
     variables = RequestContext(request, {
-        'title':    'Home',
+        'title': 'Home',
     })
     return render(request, 'index.html', variables)
 
 def account_index(request):
+    request.breadcrumbs(_('Account'),request.path_info)
     return render(request, 'registration/index.html')

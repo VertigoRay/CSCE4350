@@ -1,5 +1,6 @@
 #REQUIRED PIP PACKAGES
 
+MySQL-python
 Django
 django-registration
-MySQL-python
+django-breadcrumbs
