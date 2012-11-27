@@ -14,6 +14,6 @@ def detail(request, username):
     variables = RequestContext(request, {
         'title': username,
         'user_profile':	get_object_or_404(User, username=username),
-        'user_phone': get_object_or_404(UserProfile, phone=phone),
+        'user_phone': get_object_or_404(UserProfile, username=phone),
     })
     return render(request, 'profile/detail.html', variables)
