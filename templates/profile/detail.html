@@ -16,15 +16,19 @@
 		<li>Rating: **Insert Rating here*** </li>
 	</ul>
 
+	<h2>My Address Info</h2>
+	<ul>
+		<li>Ship to: {{ user_profile.first_name }} {{ user_profile.last_name }} </li>
+		<li>Ship to: {{ user_profile_address.addr1 }} </li>
+	</ul>
+
 	<h2>My Billing Info</h2>
 	<ul>
 		<li>Card Label: {{ user_profile_billing.name }} </li>
 		<li>Card Description: {{ user_profile_billing.description }} </li>
 		<li>Card #: {{ user_profile_billing.ccnum }} </li>
-		<li>Card Expiration month/year: {{ user_profile_billing.expirationm }} / {{ user_profile_billing.expirationy }} </li>
+		<li>Card Expiration: {{ user_profile_billing.expirationm }}/{{ user_profile_billing.expirationy }} </li>
 		<li>Card CCID#: {{ user_profile_billing.ccid }} </li>
-		<li>Card Added: {{ user_profile_billing.pub_date }} </li>
-
 	</ul>
 {% endblock %}
 {% block sidebar %}{% endblock %}
