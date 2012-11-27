@@ -19,7 +19,11 @@
 	<h2>My Address Info</h2>
 	<ul>
 		<li>Ship to: {{ user_profile.first_name }} {{ user_profile.last_name }} </li>
-		<li>Ship to: {{ user_profile_address.addr1 }} </li>
+		<li>Address 1: {{ user_profile_address.addr1 }} </li>
+		<li>Address 2: {{ user_profile_address.addr2 }} </li>
+		<li>City/State: {{ user_profile_address.city }}/{{ user_profile_address.state }} </li>
+		<li>Address 2: {{ user_profile_address.addr2 }} </li>
+		<li>Address 2: {{ user_profile_address.addr2 }} </li>
 	</ul>
 
 	<h2>My Billing Info</h2>
