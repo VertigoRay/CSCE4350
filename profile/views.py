@@ -13,6 +13,24 @@ def index(request):
 def detail(request, username):
     variables = RequestContext(request, {
         'title': username,
-        'user_profile':	get_object_or_404(User, username=username),
+        'user_profile': get_object_or_404(User, username=username),
     })
     return render(request, 'profile/detail.html', variables)
+
+def edit(request, username):
+    variables = RequestContext(request, {
+        'title': username,
+    })
+    return render(request, 'profile/edit.html', variables)
+
+def orders(request, username):
+    variables = RequestContext(request, {
+        'title': username,
+    })
+    return render(request, 'profile/orders.html', variables)
+
+def products(request, username):
+    variables = RequestContext(request, {
+        'title': username,
+    })
+    return render(request, 'profile/products.html', variables)
