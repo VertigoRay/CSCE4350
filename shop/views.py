@@ -73,8 +73,8 @@ def watch(request):
     return render(request, 'shop/watch.html', variables)
 
 def watch_add(request, product_id):
-    title = product.title
     product = get_object_or_404(Product, id=product_id)
+    title = product.title
     if request.user.is_active:
         watch = WatchList(product.id, request.user.id)
     else:
