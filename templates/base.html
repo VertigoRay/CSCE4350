@@ -28,16 +28,16 @@
         {% if user.is_active %}
             <div id="user-tools">
                 {% trans 'Welcome,' %}
-                <strong>{% filter force_escape %}{% firstof user.first_name user.username %}{% endfilter %}</strong>.
+                <a href="/profile/{{ user.username }}/"><strong>{% filter force_escape %}{% firstof user.first_name user.username %}{% endfilter %}</strong>.
                 {% block userlinks %}
                     {% url 'django-admindocs-docroot' as docsroot %}
                     {% if user.is_staff %}
                         <a href="/admin/">{% trans 'Admin' %}</a> |
+                        <a href="/profile/">{% trans 'Profile List' %}</a> |
                         {% if docsroot %}
                             <!-- <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> | -->
                         {% endif %}
                    {% endif %}
-                    <a href="/profile/{{ user.username }}/">{% trans 'Profile' %}</a> |
                     <a href="/account/logout/">{% trans 'Log out' %}</a><br />
                     <a href="/shop/watch/">{% trans 'Watch List' %}</a>
                 {% endblock %}
