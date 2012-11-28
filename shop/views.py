@@ -21,7 +21,7 @@ def index(request):
             # 'products': get_list_or_404(Product, title__icontains=request.GET['q']),
             'products': products,
             # 'condition': products.condition,
-
+            'condition': products.get_condition_display(),
         })
         # print variables.condition
     else:
