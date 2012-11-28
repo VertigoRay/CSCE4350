@@ -15,6 +15,8 @@
                     <td>
                         <strong><a href="/shop/{{ watch.product.id }}">{{ watch.product.title }}</a></strong><br /><i>{{ watch.product.description|truncatechars:50 }}</i>
                     </td><td>
+                        Condition:<br /> {{watch.product.condition}}</i>
+                    </td><td>
                         <strong>${{ watch.product.price }}</strong><br />&nbsp;</i>
                     </td><td>
                         <a href="/shop/watch/{{ watch.product.id }}/ignore/" class="deletelink">ignore</a>
