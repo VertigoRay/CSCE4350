@@ -32,7 +32,7 @@ def category(request, category):
     })
     return render(request, 'shop/category.html', variables)
 
-def product(request, product_id):
+def product(request, product_id, message):
     product = get_object_or_404(Product, id=product_id)
     title = product.title
     variables = RequestContext(request, {
@@ -61,11 +61,11 @@ def product_add(request):
     return render_to_response('shop/product_add.html', variables)
 
 def watch(request):
-    if user.is_active:
-        watches = get_list_or_404(WatchList, user_id=user.id)
+    if request.user.is_active:
+        watches = WatchList.objects.filter(user_id=request.user.id)
     else:
         watches = Nothing
-    title = product.title
+    title = 'Watch List'
     variables = RequestContext(request, {
         'title': title,
         'watches': watches,
@@ -73,19 +73,23 @@ def watch(request):
     return render(request, 'shop/watch.html', variables)
 
 def watch_add(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
     title = product.title
+    product = get_object_or_404(Product, id=product_id)
+    if request.user.is_active:
+        watch = WatchList(product.id, request.user.id)
+    else:
+        redirect('/shop/%s' % product_id)
     variables = RequestContext(request, {
-        'title':    title,
-        'products': get_list_or_404(Product, category__name__exact=category),
+        'title': title,
+        'product': product,
     })
-    return render(request, 'shop/watch.html', variables)
+    return render(request, 'shop/product.html', variables)
 
 def watch_ignore(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     title = product.title
     variables = RequestContext(request, {
-        'title':    title,
-        'products': get_list_or_404(Product, category__name__exact=category),
+        'title': title,
+        'product': product,
     })
-    return render(request, 'shop/watch.html', variables)
+    return render(request, 'shop/product.html', variables)

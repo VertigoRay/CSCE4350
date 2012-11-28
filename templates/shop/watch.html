@@ -1,0 +1,29 @@
+{% extends "shop/index.html" %}
+{% load url from future %}
+
+{% block pretitle %}{% endblock %}
+{% block breadcrumbs %}{{ block.super }} &raquo; <a href="/shop/watch/">{{ title }}</a>{% endblock %}
+{% block content_title %}{{ title }} - {{ user.username }}{% endblock %}
+{% block content %}
+    {% block object-tools %}{% endblock %}
+    {% if watches|length > 0 %}
+        <p>Found {{ watches|length }} watch{{ watches|pluralize }}.</p>
+         <table>
+            {% for watch in watches %}
+                {% cycle 'row_odd' 'row_even' as rowcolors silent %}
+                <tr class="{{ rowcolors }}">
+                    <td>
+                        <strong><a href="/shop/{{ watch.product.id }}">{{ watch.product.title }}</a></strong><br /><i>{{ watch.product.description|truncatechars:50 }}</i>
+                    </td><td>
+                        <strong>${{ watch.product.price }}</strong><br />&nbsp;</i>
+                    </td><td>
+                        <a href="/shop/{{ watch.product.id }}/edit/">edit</a><br /><a href="/shop/{{ watch.product.id }}/deactivate/">deactivate</a>
+                    </td>
+                </tr>
+            {% endfor %}
+         </table>
+    {% else %}
+        <p>No watched Products found for {{ user.username }}.</p>
+    {% endif %}
+{% endblock %}
+{% block sidebar %}{% endblock %}
