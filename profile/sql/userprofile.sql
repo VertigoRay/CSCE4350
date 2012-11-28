@@ -2,7 +2,7 @@
 -- PROFILE.SQL - rating, billing, address, userprofile, user
 -- USER TABLE -- --verified 
 INSERT INTO auth_user (username, first_name, last_name, email, password, date_joined) VALUES
-   ('bmarley','Bob','Marley','bob@marley.com','qwe123','2009-5-4 04:13:54'),
+    ('bmarley','Bob','Marley','bob@marley.com','qwe123','2009-5-4 04:13:54'),
 	('cworley','Chris','Worley','cworley@unt.edu','123456','2009-6-5 04:13:54'),
 	('jmills','Jimi','Mills','jmills@unt.edu','123456','2009-9-11 04:13:54'),
 	('jbrhoads','Jacob','Rhoads','jbrhoads@email.com','qwe123','2009-7-23 04:13:54'),
