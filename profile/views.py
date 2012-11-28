@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.forms import ModelForm
-from django.shortcuts import render, get_list_or_404, get_object_or_404
+from django.shortcuts import redirect, render, get_list_or_404, get_object_or_404
 from django.template import Context, loader, RequestContext
 from profile.models import *
 from shop.models import *
@@ -13,6 +13,11 @@ class RateForm(ModelForm):
 
 def index(request):
     title = 'Profile'
+    if not (request.user.is_staff):
+        if request.user.is_active:
+            return redirect('/profile/{{ request.user.username }}')
+        else:
+            return redirect('/')
     variables = RequestContext(request, {
         'title':    title,
         'user_list':  get_list_or_404(User.objects.order_by('username')),
