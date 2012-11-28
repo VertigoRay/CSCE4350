@@ -19,11 +19,15 @@
                     {% cycle 'row_odd' 'row_even' as rowcolors silent %}
                     <tr class="{{ rowcolors }}">
                         <td>
-                            <strong><a href="/shop/{{product.id}}/">{{product.title}}</a></strong><br /><i>{{product.description|truncatechars:50}}</i>
-                        </td><td>
-                            <i>{{ condition }}</i>
-                        </td><td>
-                            <strong>${{product.price}}</strong><br /><i><a href="/profile/{{product.user}}">{{product.user}}</a></i>
+                            <strong><a href="/shop/{{product.id}}/">{{product.title}}</a></strong><br />
+                            <i>{{product.description|truncatechars:50}}</i>
+                        </td>
+                        <td>
+                            <i>Condition: {{ condition }}</i>
+                        </td>
+                        <td>
+                            <strong>${{product.price}}</strong><br />
+                            <i><a href="/profile/{{product.user}}">{{product.user}}</a></i>
                         </td>
                     </tr>
                 {% endfor %}
