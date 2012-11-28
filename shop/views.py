@@ -15,13 +15,14 @@ def index(request):
     title = 'Shop'
     if 'q' in request.GET:
         products = Product.objects.filter(title__icontains=request.GET['q'])
+        product_condition = Product.objects.get(Product)
         variables = RequestContext(request, {
             'title': title,
             'search': 'You searched for: %r' % request.GET['q'],
             # 'products': get_list_or_404(Product, title__icontains=request.GET['q']),
             'products': products,
             # 'condition': products.condition,
-            'condition': products.get_condition_display(),
+            'condition': product_condition.get_condition_display(),
         })
         # print variables.condition
     else:
