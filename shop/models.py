@@ -38,8 +38,8 @@ class Product (models.Model):
     shiptype = models.CharField('preferred shipping method', max_length=3, choices=SHIP_TYPES, default=0, help_text='How the product will be delivered. Default: Local Pick-up')
     shipfee = models.DecimalField('shipping fee', max_digits=10, decimal_places=2, default=0, help_text='Fee to be charged for the shipping type. Default: $0.00')
     enabled = models.BooleanField('is enabled', default=True, help_text='Determines if this product is currently listed/available.')
-    expiration = models.DateTimeField('expiration date', help_text='Date the product is automatically disabled.')
-    sold = models.DateTimeField('date sold')
+    expiration = models.DateTimeField('expiration date', blank=True, null=True, help_text='Date the product is automatically disabled.')
+    sold = models.DateTimeField('date sold', blank=True, null=True)
     pub_date = models.DateTimeField('published', auto_now_add=True)
 
     def __str__(self):

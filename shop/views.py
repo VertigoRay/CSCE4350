@@ -9,7 +9,7 @@ class ProductAddForm(ModelForm):
     # Auto generated form to create Product model.
     class Meta:
         model = Product
-        exclude = ('user',)
+        exclude = ('user','enabled','expiration','sold',)
 
 def index(request):
     title = 'Shop'
@@ -62,7 +62,7 @@ def product_add(request):
             new_product = form.save(commit=False)
             new_product.user = request.user
             new_product.save()
-            redirect('/shop/%s/' % new_product.id)
+            return redirect('/shop/%s/' % new_product.id)
     else:
         form = ProductAddForm()
 
