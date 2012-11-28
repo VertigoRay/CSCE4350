@@ -5,7 +5,7 @@
 {% block breadcrumbs %}{{ block.super }} &raquo; <a href="/shop/">Shop</a>{% endblock %}
 {% block content %}
     {% block object-tools %}{% endblock %}
-    <div style="margin: 0 auto;">
+    <div id="formsearch">
     <form action="/shop/" method="get">
         <input type="text" name="q">
         <input type="submit" value="Search">
