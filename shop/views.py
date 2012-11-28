@@ -85,8 +85,13 @@ def product_add(request):
     })
     return render_to_response('shop/product_add.html', variables)
 
-def watch(request):
+def watch(request, **kwargs):
+    print 'kwargs: %s' % kwargs
     if request.user.is_active:
+        if 'product_id' in kwargs:
+            if 'ignore' in kwargs:
+                WatchList.objects.get(product=kwargs['product_id'], user=request.user.id).delete()
+                return redirect('/shop/watch/')
         watches = WatchList.objects.filter(user_id=request.user.id)
     else:
         watches = Nothing
