@@ -23,7 +23,7 @@ def index(request):
             # 'condition': products.condition,
 
         })
-        print variables.condition
+        # print variables.condition
     else:
         variables = RequestContext(request, {
             'title': title,
