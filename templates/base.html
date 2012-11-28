@@ -34,11 +34,12 @@
                     {% if user.is_staff %}
                         <a href="/admin/">{% trans 'Admin' %}</a> |
                         {% if docsroot %}
-                            <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> |
+                            <!-- <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> | -->
                         {% endif %}
                    {% endif %}
                     <a href="/profile/{{ user.username }}/">{% trans 'Profile' %}</a> |
-                    <a href="/account/logout/">{% trans 'Log out' %}</a>
+                    <a href="/account/logout/">{% trans 'Log out' %}</a><br />
+                    <a href="/shop/watch/">{% trans 'Watch List' %}</a>
                 {% endblock %}
             </div>
         {% else %}
