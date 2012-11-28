@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.utils import timezone
+from shop.models import Product
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
@@ -81,3 +82,11 @@ class Rating(models.Model):
     rating = models.PositiveSmallIntegerField(choices=RATE)
     comment = models.TextField(blank=True)
     pub_date = models.DateTimeField('published', auto_now_add=True)
+
+class WatchList(models.Model):
+    user = models.ForeignKey(User)
+    product = models.ForeignKey(Product)
+    pub_date = models.DateTimeField('published', auto_now_add=True)
+
+    class Meta:
+        unique_together = (('user', 'product'),)
