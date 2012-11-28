@@ -38,12 +38,14 @@
     {% else %}
         {% regroup category by pid as category_by_pid %}
         {% for p in category_by_pid %}
-            <h2>{{ p.grouper }}</h2>
-            <ul>
-            {% for c in p.list %}
-                <li><a href="/shop/{{ c.name }}">{{ c.name }}</a></li>
-            {% endfor %}
-            </ul>
+            {% if p.grouper %}
+                <h2><a href="/shop/{{ p.grouper }}/">{{ p.grouper }}</a></h2>
+                <ul>
+                {% for c in p.list %}
+                    <li><a href="/shop/{{ p.grouper }}/{{ c.name }}/">{{ c.name }}</a></li>
+                {% endfor %}
+                </ul>
+            {% endif %}
         {% endfor %}
     {% endif %}
 {% if category %}<h1>Category</h1>{{ category }}{% endif %}
