@@ -4,9 +4,9 @@
 {% block pretitle %}{% endblock %}
 {% block breadcrumbs %}{{ block.super }} &raquo; 
     {% if pcategory %}
-        <a href="/shop/{{ pcategory }}">{{ pcategory }}</a> &raquo; <a href="/shop/{{ category }}">{{ category }}</a>
+        <a href="/shop/{{ pcategory }}/">{{ pcategory }}</a> &raquo; <a href="/shop/{{ pcategory }}/{{ category }}/">{{ category }}</a>
     {% else %}
-        <a href="/shop/{{ category }}">{{ category }}</a>
+        <a href="/shop/{{ category }}/">{{ category }}</a>
     {% endif %}
 {% endblock %}
 {% block content %}
