@@ -1,8 +1,9 @@
+from django.core.exceptions import ObjectDoesNotExist
+from django.db import models
 from django.forms import ModelForm
 from django.shortcuts import redirect, render, render_to_response, get_list_or_404, get_object_or_404
 from django.template import RequestContext
 from shop.models import *
-from django.db import models
 
 class ProductAddForm(ModelForm):
     # Auto generated form to create Product model.
@@ -35,11 +36,19 @@ def category(request, category):
 def product(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     title = product.title
+    try:
+        print WatchList.objects.get(product=product, user=request.user)
+        watch = 'Ignore'
+        pass
+    except ObjectDoesNotExist:
+        watch = 'Watch'
+        pass
     variables = RequestContext(request, {
         'title': title,
         'product': product,
         'condition': product.get_condition_display(),
         'shiptype': product.get_shiptype_display(),
+        'watch': watch,
     })
     return render(request, 'shop/product.html', variables)
 

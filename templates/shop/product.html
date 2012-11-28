@@ -7,7 +7,7 @@
     {% block object-tools %}
         <ul class="object-tools">
             {% if user.is_active %}
-            <li><a href="/shop/{{product.id}}/watch/" class="addlink">Watch</a></li>
+            <li><a href="/shop/{{product.id}}/{{watch|lower}}/" class="addlink">{{watch}}</a></li>
             {% endif %}
         </ul>
     {% endblock %}
