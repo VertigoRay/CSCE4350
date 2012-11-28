@@ -2,6 +2,7 @@ from django.forms import ModelForm
 from django.shortcuts import redirect, render, render_to_response, get_list_or_404, get_object_or_404
 from django.template import RequestContext
 from shop.models import *
+from django.db import models
 
 class ProductAddForm(ModelForm):
     # Auto generated form to create Product model.
