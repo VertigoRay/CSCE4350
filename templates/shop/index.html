@@ -4,11 +4,11 @@
 {% block pretitle %}{% endblock %}
 {% block breadcrumbs %}{{ block.super }} &raquo; <a href="/shop/">Shop</a>{% endblock %}
 {% block content %}
-{% block object-tools %}{% endblock %}
+{% block object-tools %}{% endblock
     <form action="/shop/" method="get">
         <input type="text" name="q">
         <input type="submit" value="Search">
-    </form>
+    </form> %}
     {% if search %}
         <strong>{{ search.name }}</strong>
         <h2>Results</h2>
@@ -23,7 +23,7 @@
                             <i>{{product.description|truncatechars:50}}</i>
                         </td>
                         <td>
-                            Condition:<br /> {{product.condition}}</i>
+                            Condition:<br /> {{    product.condition}}</i>
                         </td>
                         <td>
                             <strong>${{product.price}}</strong><br />
