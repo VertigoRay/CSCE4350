@@ -35,6 +35,7 @@ def category(request, category):
 def product(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     title = product.title
+    category = product.get_condition_display() editing shee
     variables = RequestContext(request, {
         'title': title,
         'product': product,

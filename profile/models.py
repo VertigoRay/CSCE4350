@@ -48,6 +48,8 @@ class Billing(models.Model):
         ('8','August'),
         ('9','September'),
         ('10','October'),
+        ('11','November'),
+        ('12','December'),
     )
 
     user = models.ForeignKey(User)
