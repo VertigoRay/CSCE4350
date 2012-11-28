@@ -1,15 +1,15 @@
-{% extends "base.html" %}
+{% extends "shop/index.html" %}
 {% load url from future %}
 
 {% block pretitle %}{% endblock %}
-{% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+{% block breadcrumbs %}{{ block.super }} &raquo; <a href="/shop/{{title}}">{{title}}</a>{% endblock %}
 {% block content %}
 {% block object-tools %}{% endblock %}
     <table>
         {% for product in products %}
             {% cycle 'row_odd' 'row_even' as rowcolors silent %}
             {% comment %}
-	            This shoule work, but doesn't, so fkit
+	            This should work, but doesn't, so fkit
 	            <tr class="{{ rowcolors }}">{% include "shop/product_td.html " %}</tr>
             {% endcomment %}
             <tr class="{{ rowcolors }}">

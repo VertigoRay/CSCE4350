@@ -30,8 +30,11 @@ def index(request):
     return render(request, 'shop/index.html', variables)
 
 def category(request, category):
+    category_obj = Category.objects.filter(name=category)
+    print category_obj
     variables = RequestContext(request, {
-        'title':    category,
+        'title': category,
+        'category': category_obj,
         'products': get_list_or_404(Product, category__name__exact=category),
     })
     return render(request, 'shop/category.html', variables)
