@@ -1,9 +1,9 @@
-{% extends "base.html" %}
+{% extends "profile/detail.html" %}
 {% load url from future %}
 
-{% block branding %}CSCE4350{% endblock %}
 {% block pretitle %}{% endblock %}
-{% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+{% block breadcrumbs %} {{ block.super }} &raquo; <a href="/account/{{ user_profile.username }}/edit/">{{title}}</a>{% endblock %}
+{% block content_title %}{% if title %}<h1>{{ title }} - {{ user_profile.username }}</h1>{% endif %}{% endblock %}
 {% block content %}
 	{% block object-tools %}
         {% include 'profile/sidebar.html' %}
