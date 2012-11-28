@@ -35,12 +35,11 @@ def category(request, category):
 def product(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     title = product.title
-    condition = product.get_condition_display()
-    print condition
     variables = RequestContext(request, {
         'title': title,
         'product': product,
-        'condition': condition,
+        'condition': product.get_condition_display(),
+        'shiptype': product.get_shiptype_display(),
     })
     return render(request, 'shop/product.html', variables)
 
