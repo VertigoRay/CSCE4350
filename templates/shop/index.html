@@ -5,10 +5,12 @@
 {% block breadcrumbs %}{{ block.super }} &raquo; <a href="/shop/">Shop</a>{% endblock %}
 {% block content %}
     {% block object-tools %}{% endblock %}
+    <div style="margin: 0 auto;">
     <form action="/shop/" method="get">
         <input type="text" name="q">
         <input type="submit" value="Search">
     </form>
+    </div>
     {% if search %}
         <strong>{{ search.name }}</strong>
         <h2>Results</h2>
