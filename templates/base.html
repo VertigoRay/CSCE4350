@@ -26,35 +26,37 @@
         {% block branding %}{% endblock %}
         </div>
         {% if user.is_active %}
-        <div id="user-tools">
-            {% trans 'Welcome,' %}
-            <strong>{% filter force_escape %}{% firstof user.first_name user.username %}{% endfilter %}</strong>.
-            {% block userlinks %}
-                {% url 'django-admindocs-docroot' as docsroot %}
-                {% if user.is_staff %}
-                    <a href="/admin/">{% trans 'Admin' %}</a> |
-                    {% if docsroot %}
-                        <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> |
-                    {% endif %}
-               {% endif %}
-                <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a> |
-                <a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a>
-            {% endblock %}
-        </div>
+            <div id="user-tools">
+                {% trans 'Welcome,' %}
+                <strong>{% filter force_escape %}{% firstof user.first_name user.username %}{% endfilter %}</strong>.
+                {% block userlinks %}
+                    {% url 'django-admindocs-docroot' as docsroot %}
+                    {% if user.is_staff %}
+                        <a href="/admin/">{% trans 'Admin' %}</a> |
+                        {% if docsroot %}
+                            <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> |
+                        {% endif %}
+                   {% endif %}
+                    <a href="/profile/{{ user.username }}/">{% trans 'Profile' %}</a> |
+                    <a href="/account/logout/">{% trans 'Log out' %}</a>
+                {% endblock %}
+            </div>
         {% else %}
-        <div id="user-tools">
-            {% import 'registration/login_banner.html' %}
-        </div>
+            <div id="user-tools">
+                <form id="login" method="post" action="/account/login/?next={{ next|default:"/" }}">{% csrf_token %}
+                    <label>Username <input id="id_username" type="text" name="username" maxlength="30"></label>
+                    <label>Password <input type="password" name="password" id="id_password"></label>
+                    <input type="submit" class="submit" value="Login">
+                </form>
+                <br /><div id="login_banner"><a href="/accounts/register/">Register</a></div>
+            </div>
         {% endif %}
         {% block nav-global %}{% endblock %}
     </div>
     <!-- END Header -->
-    {% block breadcrumbs %}
     <div class="breadcrumbs">
-    <a href="{% url 'index' %}">{% trans 'Home' %}</a>
-    {% if title %} &rsaquo; {{ title }}{% endif %}
+        {% block breadcrumbs %}<a href="{% url 'index' %}">{% trans 'Home' %}</a>{% endblock %}
     </div>
-    {% endblock %}
     {% endif %}
 
     {% block messages %}

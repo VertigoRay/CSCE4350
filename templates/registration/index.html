@@ -1,4 +1,10 @@
-<h2>Account</h2>
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block pretitle %}{% endblock %}
+{% block content_title %}<h1>Account</h1>{% endblock %}
+{% block content %}
+{% block object-tools %}{% endblock %}
 <ul>
     <li><a href="activate/complete/">activate/complete/</a></li>
     <li><a href="activate/">activate/</a></li>
@@ -14,3 +20,5 @@
     <li><a href="password/reset/complete/">password/reset/complete/</a></li>
     <li><a href="password/reset/do">password/reset/do</a></li>
 </ul>
+{% endblock %}
+{% block sidebar %}{% endblock %}
