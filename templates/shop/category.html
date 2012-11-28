@@ -22,6 +22,8 @@
             	<td>
 				    <strong><a href="/shop/{{product.id}}">{{product.title}}</a></strong><br /><i>{{product.description|truncatechars:50}}</i>
 				</td><td>
+                    Condition:<br /> {{product.condition}}</i>
+                </td><td>
 				    <strong>${{product.price}}</strong><br /><i><a href="/profile/{{product.user}}">{{product.user}}</a></i>
 				</td><td>
                     <a href="/shop/watch/{{ product.id }}/add/" class="addlink">watch</a> (doesn't toggle yet)
