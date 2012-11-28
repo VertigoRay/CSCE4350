@@ -30,14 +30,21 @@ def index(request):
         })
     return render(request, 'shop/index.html', variables)
 
-def category(request, category):
-    category_obj = Category.objects.filter(name=category)
-    print category_obj
-    variables = RequestContext(request, {
-        'title': category,
-        'category': category_obj,
-        'products': get_list_or_404(Product, category__name__exact=category),
-    })
+def category(request, **kwargs):
+    if 'pcategory' in kwargs:
+        variables = RequestContext(request, {
+            'title': '%s - %s' % (kwargs['pcategory'], kwargs['category']),
+            'pcategory': kwargs['pcategory'],
+            'category': kwargs['category'],
+            'products': get_list_or_404(Product.objects.filter(category__pid__name=kwargs['pcategory']), category__name=kwargs['category']),
+        })
+    else:
+        variables = RequestContext(request, {
+            'title': kwargs['category'],
+            'category': kwargs['category'],
+            'products': get_list_or_404(Product, category__pid__name=kwargs['category']),
+            # 'products': get_list_or_404(Product, category__name=kwargs['category']),
+        })
     return render(request, 'shop/category.html', variables)
 
 def product(request, product_id):

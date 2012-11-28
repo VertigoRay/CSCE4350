@@ -2,7 +2,13 @@
 {% load url from future %}
 
 {% block pretitle %}{% endblock %}
-{% block breadcrumbs %}{{ block.super }} &raquo; <a href="/shop/{{title}}">{{title}}</a>{% endblock %}
+{% block breadcrumbs %}{{ block.super }} &raquo; 
+    {% if pcategory %}
+        <a href="/shop/{{ pcategory }}">{{ pcategory }}</a> &raquo; <a href="/shop/{{ category }}">{{ category }}</a>
+    {% else %}
+        <a href="/shop/{{ category }}">{{ category }}</a>
+    {% endif %}
+{% endblock %}
 {% block content %}
 {% block object-tools %}{% endblock %}
     <table>
