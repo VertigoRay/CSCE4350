@@ -1,0 +1,6 @@
+<form id="login" method="post" action="/account/login/?next={{ next|default:"/" }}">{% csrf_token %}
+    <label>Username{{ form.username }}</label>
+    <label>Password{{ form.password }}</label>
+    <input type="submit" class="submit" value="Login">
+</form>
+<br /><div id="login_banner"><a href="/accounts/register/">Register</a></div>
