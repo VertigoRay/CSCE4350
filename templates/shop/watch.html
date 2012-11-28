@@ -2,8 +2,8 @@
 {% load url from future %}
 
 {% block pretitle %}{% endblock %}
-{% block breadcrumbs %}{{ block.super }} &raquo; <a href="/shop/watch/">{{ title }}</a>{% endblock %}
-{% block content_title %}{{ title }} - {{ user.username }}{% endblock %}
+{% block breadcrumbs %}{{block.super}} &raquo; <a href="/shop/watch/">{{title}}</a>{% endblock %}
+{% block content_title %}{{title}} - {{user.username}}{% endblock %}
 {% block content %}
     {% block object-tools %}{% endblock %}
     {% if watches|length > 0 %}
@@ -17,7 +17,7 @@
                     </td><td>
                         <strong>${{ watch.product.price }}</strong><br />&nbsp;</i>
                     </td><td>
-                        <a href="/shop/{{ watch.product.id }}/edit/">edit</a><br /><a href="/shop/{{ watch.product.id }}/deactivate/">deactivate</a>
+                        <a href="/shop/{{product.id}}/ignore/" class="deletelink">ignore</a>
                     </td>
                 </tr>
             {% endfor %}

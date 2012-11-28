@@ -21,7 +21,8 @@
                     </td><td>
                         <strong>${{ product.price }}</strong><br />&nbsp;</i>
                     </td><td>
-                        <a href="/shop/{{ product.id }}/edit/">edit</a><br /><a href="/shop/{{ product.id }}/deactivate/">deactivate</a>
+                        <a href="/shop/{{product.id}}/edit/" class="changelink">edit</a><br />
+                        <a href="/shop/{{product.id}}/deactivate/" class="deletelink">remove</a>
                     </td>
                 </tr>
             {% endfor %}
