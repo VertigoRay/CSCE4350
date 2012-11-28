@@ -20,7 +20,7 @@ def index(request):
             'search': 'You searched for: %r' % request.GET['q'],
             # 'products': get_list_or_404(Product, title__icontains=request.GET['q']),
             'products': products,
-            'condition': products.condition,
+            # 'condition': products.condition,
 
         })
         print variables.condition
