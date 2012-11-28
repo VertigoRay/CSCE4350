@@ -15,7 +15,7 @@ def index(request):
     title = 'Shop'
     if 'q' in request.GET:
         products = Product.objects.filter(title__icontains=request.GET['q'])
-        product_condition = Product.objects.get(Product)
+        product_condition = Product.objects.get(condition)
         variables = RequestContext(request, {
             'title': title,
             'search': 'You searched for: %r' % request.GET['q'],
