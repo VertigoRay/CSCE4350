@@ -15,7 +15,7 @@ def index(request):
     title = 'Profile'
     if not (request.user.is_staff):
         if request.user.is_active:
-            return redirect('/profile/{{ request.user.username }}')
+            return redirect('/profile/%s' % request.user.username)
         else:
             return redirect('/')
     variables = RequestContext(request, {
