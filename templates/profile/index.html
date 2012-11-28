@@ -3,7 +3,7 @@
 
 {% block pretitle %}{% endblock %}
 {% block breadcrumbs %} {{ block.super }} &raquo; <a href="/profile/">Profile</a>{% endblock %}
-{% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+{% block content_title %}{% if title %}{{ title }}{% endif %}{% endblock %}
 {% block content %}
 {% block object-tools %}{% endblock %}
     {% if user_list %}

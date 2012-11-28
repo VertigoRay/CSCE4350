@@ -70,7 +70,7 @@
     <!-- Content -->
     <div id="content" class="{% block coltype %}colM{% endblock %}">
         {% block pretitle %}{% endblock %}
-        {% block content_title %}{% if title %}<h1 id="content_title">{{ title }}</h1>{% endif %}{% endblock %}
+        <h1 id="content_title">{% block content_title %}{% if title %}{{ title }}{% endif %}{% endblock %}</h1>
         {% block content %}
         {% block object-tools %}{% endblock %}
         {{ content }}
