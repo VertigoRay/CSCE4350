@@ -32,7 +32,7 @@ def category(request, category):
     })
     return render(request, 'shop/category.html', variables)
 
-def product(request, product_id, message):
+def product(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     title = product.title
     variables = RequestContext(request, {
