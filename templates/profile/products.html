@@ -6,7 +6,9 @@
 {% block content_title %}{% if title %}{{ title }} - {{ user_profile.username }}{% endif %}{% endblock %}
 {% block content %}
 	{% block object-tools %}
-        {% include 'profile/sidebar.html' %}
+        <ul class="object-tools">
+            <li><a href="/shop/add/" class="addlink">Add Product</a></li>
+        </ul>
     {% endblock %}
 	{% if products|length > 0 %}
         <p>Found {{ products|length }} product{{ products|pluralize }}.</p>
