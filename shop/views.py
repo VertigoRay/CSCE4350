@@ -39,6 +39,7 @@ def product(request, product_id):
     variables = RequestContext(request, {
         'title': title,
         'product': product,
+        'category': category,
     })
     return render(request, 'shop/product.html', variables)
 
