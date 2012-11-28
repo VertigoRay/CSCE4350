@@ -24,6 +24,7 @@ def index(request):
         variables = RequestContext(request, {
             'title': title,
             'category': Category.objects.all(),
+            'condition': product.get_condition_display(),
         })
     return render(request, 'shop/index.html', variables)
 
