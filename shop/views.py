@@ -53,7 +53,8 @@ def product_add(request):
             redirect('/shop/%s/' % new_product.id)
     else:
         form = ProductAddForm()
- 
+    print 'WatchList:  %s' % WatchList.objects.get(product=product_id, user=request.user.id)
+
     variables = RequestContext(request, {
         'title': title,
         'form': form,
@@ -74,22 +75,13 @@ def watch(request):
 
 def watch_add(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    title = product.title
     if request.user.is_active:
-        watch = WatchList(product.id, request.user.id)
-    else:
-        redirect('/shop/%s' % product_id)
-    variables = RequestContext(request, {
-        'title': title,
-        'product': product,
-    })
-    return render(request, 'shop/product.html', variables)
+        watch = WatchList(product=product, user=request.user)
+        watch.save()
+    return redirect('/shop/%s/' % product_id)
 
 def watch_ignore(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    title = product.title
-    variables = RequestContext(request, {
-        'title': title,
-        'product': product,
-    })
-    return render(request, 'shop/product.html', variables)
+    if request.user.is_active:
+        WatchList.objects.get(product=product_id, user=request.user.id).delete()
+    return redirect('/shop/%s/' % product_id)
