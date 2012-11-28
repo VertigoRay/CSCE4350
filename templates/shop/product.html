@@ -1,12 +1,13 @@
-{% extends "base.html" %}
+{% extends "shop/index.html" %}
 {% load url from future %}
 
 {% block pretitle %}{% endblock %}
-{% block breadcrumbs %}{{ block.super }} &raquo; <a href="/shop/{{product.id}}/">{{product.title}}</a>{% endblock %}
+{% block breadcrumbs %}{{ block.super }} &raquo; <a href="/shop/{{product.id}}/">{{ product.title }}</a>{% endblock %}
 {% block content %}
     {% block object-tools %}
         <ul class="object-tools">
             {% if user.is_active %}
+            <li><a href="/shop/{{product.id}}/buy/" class="addlink">Buy</a></li>
             <li><a href="/shop/{{product.id}}/{{watch|lower}}/" class="addlink">{{watch}}</a></li>
             {% endif %}
         </ul>

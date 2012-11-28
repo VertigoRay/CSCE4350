@@ -85,12 +85,25 @@ def product_add(request):
     })
     return render_to_response('shop/product_add.html', variables)
 
+def product_buy(request, **kwargs):
+    title = 'Buy Product'
+    variables = RequestContext(request, {
+        'title': title,
+        'product': get_object_or_404(Product, id=kwargs['product_id']),
+    })
+    return render_to_response('shop/product_buy.html', variables)
+
 def watch(request, **kwargs):
     print 'kwargs: %s' % kwargs
     if request.user.is_active:
         if 'product_id' in kwargs:
             if 'ignore' in kwargs:
                 WatchList.objects.get(product=kwargs['product_id'], user=request.user.id).delete()
+                return redirect('/shop/watch/')
+            if 'add' in kwargs:
+                product = get_object_or_404(Product, id=kwargs['product_id'])
+                watch = WatchList(product=product, user=request.user)
+                watch.save()
                 return redirect('/shop/watch/')
         watches = WatchList.objects.filter(user_id=request.user.id)
     else:

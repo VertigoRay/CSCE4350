@@ -1,0 +1,10 @@
+{% extends "shop/product.html" %}
+{% load url from future %}
+
+{% block pretitle %}{% endblock %}
+{% block breadcrumbs %}{{ block.super }} &raquo; <a href="/shop/{{product.id}}/buy/">Buy</a>{% endblock %}
+{% block content %}
+{% block object-tools %}{% endblock %}
+Show me tha money!
+{% endblock %}
+{% block sidebar %}{% endblock %}
