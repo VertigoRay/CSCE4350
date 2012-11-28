@@ -12,7 +12,7 @@ def index(request):
     title = 'Shop'
     if 'q' in request.GET:
         variables = RequestContext(request, {
-            'title': title
+            'title': title,
             'search': 'You searched for: %r' % request.GET['q'],
             # 'products': get_list_or_404(Product, title__icontains=request.GET['q']),
             'products': Product.objects.filter(title__icontains=request.GET['q']),
