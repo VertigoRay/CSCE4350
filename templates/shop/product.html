@@ -2,9 +2,15 @@
 {% load url from future %}
 
 {% block pretitle %}{% endblock %}
-{% block content_title %}{% if product.title %}<h1>{{ product.title }}</h1>{% endif %}{% endblock %}
+{% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
 {% block content %}
-{% block object-tools %}{% endblock %}
+    {% block object-tools %}
+        <ul class="object-tools">
+            {% if user.is_active %}
+            <li><a href="/shop/add/" class="addlink">Watch</a></li>
+            {% endif %}
+        </ul>
+    {% endblock %}
     <ul>
         <li>Seller: <a href="/profile/{{ product.user }}">{{ product.user }}</a></li>
         <li>Price: {{ product.price }}</li>

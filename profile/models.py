@@ -81,13 +81,3 @@ class Rating(models.Model):
     rating = models.PositiveSmallIntegerField(choices=RATE)
     comment = models.TextField(blank=True)
     pub_date = models.DateTimeField('published', auto_now_add=True)
-
-class WatchList(models.Model):
-    from shop.models import Product
-    
-    user = models.ForeignKey(User)
-    product = models.ForeignKey(Product)
-    pub_date = models.DateTimeField('published', auto_now_add=True)
-
-    class Meta:
-        unique_together = (('user', 'product'),)

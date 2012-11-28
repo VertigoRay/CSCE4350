@@ -78,3 +78,11 @@ class Order(models.Model):
 
     def __unicode__(self):
         return "%s - %s" % (self.user, self.id)
+
+class WatchList(models.Model):    
+    user = models.ForeignKey(User)
+    product = models.ForeignKey(Product)
+    pub_date = models.DateTimeField('published', auto_now_add=True)
+
+    class Meta:
+        unique_together = (('user', 'product'),)
