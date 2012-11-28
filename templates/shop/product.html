@@ -2,7 +2,7 @@
 {% load url from future %}
 
 {% block pretitle %}{% endblock %}
-{% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+{% block breadcrumbs %}{{ block.super }} &raquo; <a href="/product/">{{ title }}</a>{% endblock %}
 {% block content %}
     {% block object-tools %}
         <ul class="object-tools">
@@ -14,7 +14,7 @@
     <ul>
         <li>Seller: <a href="/profile/{{ product.user }}">{{ product.user }}</a></li>
         <li>Price: {{ product.price }}</li>
-        <li>Condition: {{ product.condition }}</li>
+        <li>Condition: {{ product.get_condition_display() }}</li>
         <li>Code: {{ product.code }}</li>
         <li>Shipping Method: {{ product.shiptype }}</li>
         <li>Shipping Fee: {{ product.shipfee }}</li>
