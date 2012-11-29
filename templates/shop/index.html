@@ -42,13 +42,11 @@
         {% regroup category by pid as category_by_pid %}
         <table>
         <tr class="{{ rowcolors }}">
-        <td>
-        {% with count=0 col=1 %}    
+        <td>    
         {% for p in category_by_pid %}
             {% if p.grouper %}
-                {% count=count|add:"1" %}
-                {% if col == 1 and count == 4 %}</td><td>{% col=col|add:"2" %}{% endif %}
-                {% if col == 2 and count == 8 %}</td><td>{% col=col|add:"3" %}{% endif %}
+                {% if forloop.counter == 4 %}</td><td>{% endif %}
+                {% if forloop.counter == 8 %}</td><td>{% endif %}
                 <h2><a href="/shop/{{ p.grouper }}/">{{ p.grouper }}</a></h2>
                 <ul>
                     {% for c in p.list %}
