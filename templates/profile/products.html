@@ -27,7 +27,7 @@
                     </td>
                     {% if product.sold %}
                     <td>
-                        <strong>Sold</strong> to:{{ product.order.user.username }} <br /><i>{{ product.sold }}</i>
+                        <strong>Sold</strong> to: <a href="/profile/{{ product.order.user.username }}">{{ product.order.user.username }}</a><br /><i>{{ product.sold }}</i>
                     </td>
                     {% else %}
                     <td>
