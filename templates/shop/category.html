@@ -10,7 +10,7 @@
     {% endif %}
 {% endblock %}
 {% block content %}
-{% block object-tools %}{% endblock %}
+    {% block object-tools %}{% endblock %}
     <table>
         {% for product in products %}
             {% cycle 'row_odd' 'row_even' as rowcolors silent %}

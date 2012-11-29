@@ -70,12 +70,6 @@
 
     <!-- Content -->
     <div id="content" class="{% block coltype %}colM{% endblock %}">
-        {% block pretitle %}{% endblock %}
-        <h1 id="content_title">{% block content_title %}{% if title %}{{ title }}{% endif %}{% endblock %}</h1>
-        {% block content %}
-        {% block object-tools %}{% endblock %}
-        {{ content }}
-        {% endblock %}
         {% block sidebar %}
             <div id="right_bar">
                 <form action="/shop/" method="get">
@@ -83,6 +77,12 @@
                     <input type="submit" value="Shop">
                 </form>
             </div>
+        {% endblock %}
+        {% block pretitle %}{% endblock %}
+        <h1 id="content_title">{% block content_title %}{% if title %}{{ title }}{% endif %}{% endblock %}</h1>
+        {% block content %}
+        {% block object-tools %}{% endblock %}
+        {{ content }}
         {% endblock %}
         <br class="clear" />
     </div>
