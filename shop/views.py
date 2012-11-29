@@ -5,6 +5,13 @@ from django.shortcuts import redirect, render, render_to_response, get_list_or_4
 from django.template import RequestContext
 from shop.models import *
 
+class ProductBuyForm(ModelForm):
+    # AKA:  Order Form
+    # Auto generated form to create Order model.
+    class Meta:
+        model = Order
+        fields = ('billing',)
+
 class ProductAddForm(ModelForm):
     # Auto generated form to create Product model.
     class Meta:
@@ -35,7 +42,7 @@ def patch_users_watch_lists(products, user):
 
 def index(request):
     if 'q' in request.GET:
-        products = Product.objects.filter(title__icontains=request.GET['q'])
+        products = Product.objects.filter(enabled=1, title__icontains=request.GET['q'])
         variables = RequestContext(request, {
             'search': 'You searched for: %r' % request.GET['q'],
             # 'products': get_list_or_404(Product, title__icontains=request.GET['q']),
@@ -53,13 +60,13 @@ def category(request, **kwargs):
             'title': '%s - %s' % (kwargs['pcategory'], kwargs['category']),
             'pcategory': kwargs['pcategory'],
             'category': kwargs['category'],
-            'products': patch_users_watch_lists(get_list_or_404(Product.objects.filter(category__pid__name=kwargs['pcategory']), category__name=kwargs['category']), request.user),
+            'products': patch_users_watch_lists(get_list_or_404(Product.objects.filter(enabled=1, category__pid__name=kwargs['pcategory']), category__name=kwargs['category']), request.user),
         })
     else:
         variables = RequestContext(request, {
             'title': kwargs['category'],
             'category': kwargs['category'],
-            'products': patch_users_watch_lists(Product.objects.filter(category__pid__name=kwargs['category']), request.user),
+            'products': patch_users_watch_lists(Product.objects.filter(enabled=1, category__pid__name=kwargs['category']), request.user),
         })
 
     return render(request, 'shop/category.html', variables)

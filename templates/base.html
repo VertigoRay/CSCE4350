@@ -76,7 +76,14 @@
         {% block object-tools %}{% endblock %}
         {{ content }}
         {% endblock %}
-        {% block sidebar %}{% endblock %}
+        {% block sidebar %}
+            <div id="right_bar">
+                <form action="/shop/" method="get">
+                    <input type="text" name="q">
+                    <input type="submit" value="Shop">
+                </form>
+            </div>
+        {% endblock %}
         <br class="clear" />
     </div>
     <!-- END Content -->
