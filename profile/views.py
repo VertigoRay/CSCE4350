@@ -28,11 +28,19 @@ def detail(request, username):
     user_profile = get_object_or_404(User, username=username)
     user_profile_billing = Billing.objects.get(user_id=user_profile.id)
     user_profile_address = Address.objects.get(user_id=user_profile.id)
+    
+    rating = Rating.objects.filter(seller=user_profile.id).values('rating')
+    rating_sum = int(sum(r['rating'] for r in rating))
+    rating_count = int(len(rating))
+    rating_avg = rating_sum/rating_count
+
     variables = RequestContext(request, {
         'title': username,
         'user_profile': user_profile,
         'user_profile_billing': user_profile_billing,
         'user_profile_address': user_profile_address,
+        'rating_avg': rating_avg,
+        'rating_count': rating_count,
     })
     return render(request, 'profile/detail.html', variables)
 
@@ -79,7 +87,25 @@ def rate(request, username):
 
     variables = RequestContext(request, {
         'title': title,
-        'user_profile':	get_object_or_404(User, username=username),
+        'user_profile': get_object_or_404(User, username=username),
         'form': form,
     })
     return render(request, 'profile/rate.html', variables)
+
+def rating(request, username):
+    title = 'Rating'
+
+    user_profile = get_object_or_404(User, username=username)
+    
+    rating = Rating.objects.filter(seller=user_profile.id).values('rating')
+    rating_sum = int(sum(r['rating'] for r in rating))
+    rating_count = int(len(rating))
+    rating_avg = rating_sum/rating_count
+
+    variables = RequestContext(request, {
+        'title': title,
+        'ratings':	get_list_or_404(Rating, seller=user_profile),
+        'rating_avg': rating_avg,
+        'rating_count': rating_count,
+    })
+    return render(request, 'profile/rating.html', variables)

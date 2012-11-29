@@ -14,7 +14,7 @@
             {% for order in orders %}
                 {% cycle 'row_odd' 'row_even' as rowcolors silent %}
                 <tr class="{{ rowcolors }}">
-                    <td><a href="/shop/product/{{ order.product.id }}">{{ order.product.title }}</a><br /><i>Purchased on: {{ order.pub_date }}</i></td>
+                    <td><a href="/shop/{{ order.product.id }}">{{ order.product.title }}</a><br /><i>Purchased on: {{ order.pub_date }}</i></td>
                     <td>{{ order.statusinfo }}<br /><i>Updated: {{ order.mod_date }}</i></td>
                     <td>
                         Condition:<br /><i>{{ order.product.get_condition_display }}</i>

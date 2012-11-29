@@ -13,7 +13,7 @@
 		<li>Email: {{ user_profile.email }}</li>
 		<li>Member since: {{ user_profile.date_joined }}</li>
 		<li>Phone: {{ user_profile.userprofile.phone }} </li>
-		<li>Rating: **Insert Rating here*** </li>
+		<li>Rating: {{ rating_avg }}/10 (<a href="/profile/{{ user_profile.username }}/rating/">{{rating_count}}</a>)</li>
 	</ul>
 
 	<h2>Address Info</h2>

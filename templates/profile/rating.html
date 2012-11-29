@@ -1,0 +1,30 @@
+{% extends "profile/detail.html" %}
+{% load url from future %}
+
+{% block pretitle %}{% endblock %}
+{% block breadcrumbs %} {{ block.super }} &raquo; <a href="/profile/{{ user_profile.username }}">{{ user_profile.username }}</a>{% endblock %}
+{% block content_title %}{% if title %}{{ title }} - {{ user_profile.username }}{% endif %}{% endblock %}
+{% block content %}
+    {% block object-tools %}
+        {% include 'profile/sidebar.html' %}
+    {% endblock %}
+    {% if ratings|length > 0 %}
+        <h2>Rating Average</h2>
+        {{ rating_avg }} out of 10.
+        <h2>Reviews</h2>
+        <p>Found {{ ratings|length }} rating{{ ratings|pluralize }}.</p>
+         <table>
+            {% for rate in ratings %}
+                {% cycle 'row_odd' 'row_even' as rowcolors silent %}
+                <tr class="{{ rowcolors }}">
+                    <td><a href="/profile/{{ rate.buyer }}"/>{{ rate.buyer }}</a></td>
+                    <td>{{ rate.rating }}</td>
+                    <td>{{ rate.comment }}</td>
+                </tr>
+            {% endfor %}
+         </table>
+    {% else %}
+        <p>No Order History found for {{ user_profile.username }}.</p>
+    {% endif %}
+{% endblock %}
+{% block sidebar %}{% endblock %}
