@@ -9,8 +9,8 @@
 
     <h2>Address</h2>
     {{user.address}}
-    <form action="/shop/add/" method="post">{% csrf_token %}
-        {{ form.as_p }}
+    <form action="/shop/{{product.id}}/buy/" method="post">{% csrf_token %}
+        {{ form }}
         <input type="submit" value="Submit" />
     </form>
 {% endblock %}
