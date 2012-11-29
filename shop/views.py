@@ -26,7 +26,7 @@ def index(request):
     else:
         variables = RequestContext(request, {
             'title': title,
-            'category': Category.objects.all(),
+            'category': Category.objects.filter().order_by('pid__name', 'name'),
         })
     return render(request, 'shop/index.html', variables)
 
