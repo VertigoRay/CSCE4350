@@ -11,7 +11,7 @@ def index(request):
     variables = RequestContext(request, {
         'category': Category.objects.filter().order_by('pid__name', 'name'),
     })
-    return render(request, 'shop/index.html', variables)
+    return render(request, 'index.html', variables)
 
 def account_index(request):
     return render(request, 'registration/index.html')
