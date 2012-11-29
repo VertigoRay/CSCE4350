@@ -19,7 +19,7 @@
                     <td>
                         <strong><a href="/shop/{{ product.id }}">{{ product.title }}</a></strong><br /><i>{{ product.description|truncatechars:50 }}</i>
                     </td><td>
-                        <i>Condition:</i><br />{{ product.get_condition_display }}<br />&nbsp;
+                        <i>Condition:<br /><i>{{ product.get_condition_display }}</i>
                     </td><td>
                         <strong>${{ product.price }}</strong><br />&nbsp;</i>
                     </td><td>

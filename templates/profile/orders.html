@@ -16,7 +16,10 @@
                 <tr class="{{ rowcolors }}">
                     <td><a href="/shop/product/{{ order.product.id }}">{{ order.product.title }}</a><br /><i>Purchased on: {{ order.pub_date }}</i></td>
                     <td>{{ order.statusinfo }}<br /><i>Updated: {{ order.mod_date }}</i></td>
-                    <td align="right">{{ order.product.price }}<br /><a href="/profile/{{ order.product.user.username }}">{{ order.product.user.username }}</a> <a href="/profile/{{ order.product.user.username }}/rate/">rate</a></td>
+                    <td>
+                        <i>Condition:<br /><i>{{ product.get_condition_display }}</i>
+                    </td>
+                    <td align="right">${{ order.product.price }}<br /><a href="/profile/{{ order.product.user.username }}">{{ order.product.user.username }}</a> <a href="/profile/{{ order.product.user.username }}/rate/">rate</a></td>
                 </tr>
             {% endfor %}
          </table>
