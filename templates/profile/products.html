@@ -24,15 +24,18 @@
                         <strong>${{ product.price }}</strong><br />&nbsp;</i>
                     </td><td>
                         Posted on:<br /><i> {{product.pub_date}}</i>
-                    </td><td>
-                        <a href="/shop/{{product.id}}/edit/" class="changelink">edit</a><br />
-                        <a href="/shop/{{product.id}}/deactivate/" class="deletelink">remove</a>
                     </td>
                     {% if product.sold %}
                     <td>
                         Sold: {{ product.sold }}
                     </td>
+                    {% else %}
+                    <td>
+                        <a href="/shop/{{product.id}}/edit/" class="changelink">edit</a><br />
+                        <a href="/shop/{{product.id}}/deactivate/" class="deletelink">remove</a>
+                    </td>
                     {% endif %}
+                    
                 </tr>
             {% endfor %}
          </table>
