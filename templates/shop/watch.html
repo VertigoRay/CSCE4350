@@ -15,7 +15,7 @@
                     <td>
                         <strong><a href="/shop/{{ watch.product.id }}">{{ watch.product.title }}</a></strong><br /><i>{{ watch.product.description|truncatechars:50 }}</i>
                     </td><td>
-                        Condition:<br /> {{watch.product.condition}}</i>
+                        Condition:<br /> <i>{{watch.product.get_condition_display}}</i>
                     </td><td>
                         <strong>${{ watch.product.price }}</strong><br />&nbsp;</i>
                     </td><td>
