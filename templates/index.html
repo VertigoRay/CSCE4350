@@ -7,13 +7,61 @@
 {% block content_title %}{% if title %}{{ title }}{% endif %}{% endblock %}
 {% block content %}
 	{% block object-tools %}{% endblock %}
-	<p>CSCE 4350 Project Links</p>
+    <div id="formsearch">
+    <form action="/shop/" method="get">
+        <input type="text" name="q">
+        <input type="submit" value="Shop">
+    </form>
+    </div>
+    {% if search %}
+        <strong>{{ search.name }}</strong>
+        <h2>Results</h2>
+        {% if products %}
+            <p>Found {{ products|length }} product{{ products|pluralize }}.</p>
+             <table>
+                {% for product in products %}
+                    {% cycle 'row_odd' 'row_even' as rowcolors silent %}
+                    <tr class="{{ rowcolors }}">
+                        <td>
+                            <strong><a href="/shop/{{product.id}}/">{{product.title}}</a></strong><br />
+                            <i>{{product.description|truncatechars:50}}</i>
+                        </td><td>
+                            Condition:<br /> {{product.condition}}</i>
+                        </td><td>
+                            <strong>${{product.price}}</strong><br />
+                            <i><a href="/profile/{{product.user}}">{{product.user}}</a></i>
+                        </td><td>
+                            <a href="/shop/{{ product.id }}/buy/" class="addlink">buy</a><br />
+                            <a href="/shop/watch/{{ product.id }}/add/" class="addlink">watch</a> (doesn't toggle yet)
+                        </td>
+                    </tr>
+                {% endfor %}
+             </table>
+        {% else %}
+            <p>No products matched your search criteria.</p>
+        {% endif %}
+    {% else %}
+        {% regroup category by pid as category_by_pid %}
+        <table>
+        <tr class="{{ rowcolors }}">
+        <td>    
+        {% for p in category_by_pid %}
+            {% if p.grouper %}
+                {% if forloop.counter == 4 %}</td><td>{% endif %}
+                {% if forloop.counter == 8 %}</td><td>{% endif %}
+                {% if forloop.counter == 10 %}</td><td>{% endif %}
+                <h2><a href="/shop/{{ p.grouper }}/">{{ p.grouper }}</a></h2>
+                <ul>
+                    {% for c in p.list %}
+                        <li><a href="/shop/{{ p.grouper }}/{{ c.name }}/">{{ c.name }}</a></li>
+                    {% endfor %}       
+                </ul>
+            {% endif %}
+        {% endfor %}
+        </td>
+        </tr>    
+        </table>
+    {% endif %}
 {% endblock %}
 {% block sidebar %}
-	<ul>
-        <!-- <li><a href="/admin">admin</a></li> -->
-        <li><a href="/profile">profile (debug mode)</a></li>
-        <li><a href="/shop">shop</a></li>
-	</ul>
-    <!-- <img src="{% static "/images/DustForPrints.png" %}" style="disaply: block; maargin: 0px auto;" /> -->
 {% endblock %}
