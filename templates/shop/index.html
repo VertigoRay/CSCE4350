@@ -47,8 +47,8 @@
         {% for p in category_by_pid %}
             {% if p.grouper %}
                 {{ count|add:"1" }}
-                {% if col==1 and count==4 %}</td><td>{{ col|add:"2" }}{% endif %}
-                {% if col==2 and count==8 %}</td><td>{{ col|add:"3" }}{% endif %}
+                {% if col == 1 and count == 4 %}</td><td>{{ col|add:"2" }}{% endif %}
+                {% if col == 2 and count == 8 %}</td><td>{{ col|add:"3" }}{% endif %}
                 <h2><a href="/shop/{{ p.grouper }}/">{{ p.grouper }}</a></h2>
                 <ul>
                     {% for c in p.list %}
