@@ -6,12 +6,6 @@
 {% block pretitle %}{% endblock %}
 {% block content %}
 	{% block object-tools %}{% endblock %}
-    <div id="right_bar">
-    <form action="/shop/" method="get">
-        <input type="text" name="q">
-        <input type="submit" value="Shop">
-    </form>
-    </div>
     {% if search %}
         <strong>{{ search.name }}</strong>
         <h2>Results</h2>

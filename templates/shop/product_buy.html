@@ -4,6 +4,13 @@
 {% block pretitle %}{% endblock %}
 {% block breadcrumbs %}{{ block.super }} &raquo; <a href="/shop/{{product.id}}/buy/">Buy</a>{% endblock %}
 {% block content %}
-{% block object-tools %}{% endblock %}
-Show me tha money!
+    {{ block.super }}
+    {% block object-tools %}{% endblock %}
+
+    <h2>Address</h2>
+    {{user.address}}
+    <form action="/shop/add/" method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" />
+    </form>
 {% endblock %}

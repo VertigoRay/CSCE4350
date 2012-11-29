@@ -111,14 +111,25 @@ def product_add(request):
 
 def product_buy(request, **kwargs):
     title = 'Buy Product'
+    if request.method == 'POST':
+        form = ProductBuyForm(request.POST)
+        if form.is_valid():
+            # Create a new Server object.
+            new_product = form.save(commit=False)
+            new_product.user = request.user
+            new_product.save()
+            return redirect('/shop/%s/' % new_product.id)
+    else:
+        form = ProductBuyForm()
+
     variables = RequestContext(request, {
         'title': title,
+        'form': form,
         'product': get_object_or_404(Product, id=kwargs['product_id']),
     })
     return render_to_response('shop/product_buy.html', variables)
 
 def watch(request, **kwargs):
-    print 'kwargs: %s' % kwargs
     if request.user.is_active:
         if 'product_id' in kwargs:
             if 'ignore' in kwargs:
