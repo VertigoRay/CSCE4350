@@ -47,6 +47,7 @@
             {% if p.grouper %}
                 {% if forloop.counter == 4 %}</td><td>{% endif %}
                 {% if forloop.counter == 8 %}</td><td>{% endif %}
+                {% if forloop.counter == 10 %}</td><td>{% endif %}
                 <h2><a href="/shop/{{ p.grouper }}/">{{ p.grouper }}</a></h2>
                 <ul>
                     {% for c in p.list %}
