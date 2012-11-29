@@ -38,27 +38,6 @@
         {% else %}
             <p>No products matched your search criteria.</p>
         {% endif %}
-    {% else %}
-        {% regroup category by pid as category_by_pid %}
-        <table>
-        <tr class="{{ rowcolors }}">
-        <td>    
-        {% for p in category_by_pid %}
-            {% if p.grouper %}
-                {% if forloop.counter == 4 %}</td><td>{% endif %}
-                {% if forloop.counter == 8 %}</td><td>{% endif %}
-                {% if forloop.counter == 10 %}</td><td>{% endif %}
-                <h2><a href="/shop/{{ p.grouper }}/">{{ p.grouper }}</a></h2>
-                <ul>
-                    {% for c in p.list %}
-                        <li><a href="/shop/{{ p.grouper }}/{{ c.name }}/">{{ c.name }}</a></li>
-                    {% endfor %}       
-                </ul>
-            {% endif %}
-        {% endfor %}
-        </td>
-        </tr>    
-        </table>
     {% endif %}
 {% endblock %}
 {% block sidebar %}{% endblock %}

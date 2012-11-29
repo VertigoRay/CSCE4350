@@ -12,11 +12,9 @@ class ProductAddForm(ModelForm):
         exclude = ('user','enabled','expiration','sold',)
 
 def index(request):
-    title = 'Shop'
     if 'q' in request.GET:
         products = Product.objects.filter(title__icontains=request.GET['q'])
         variables = RequestContext(request, {
-            'title': title,
             'search': 'You searched for: %r' % request.GET['q'],
             # 'products': get_list_or_404(Product, title__icontains=request.GET['q']),
             'products': products,
@@ -24,10 +22,7 @@ def index(request):
         })
         # print variables.condition
     else:
-        variables = RequestContext(request, {
-            'title': title,
-            'category': Category.objects.filter().order_by('pid__name', 'name'),
-        })
+        variables = RequestContext(request)
     return render(request, 'shop/index.html', variables)
 
 def category(request, **kwargs):
