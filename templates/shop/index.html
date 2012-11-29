@@ -24,7 +24,8 @@
                             <strong><a href="/shop/{{product.id}}/">{{product.title}}</a></strong><br />
                             <i>{{product.description|truncatechars:50}}</i>
                         </td><td>
-                            Condition:<br /> {{order.product.get_condition_display}</i>
+                            Condition:<br />
+                            <i>{{product.get_condition_display}}</i>
                         </td><td>
                             <strong>${{product.price}}</strong><br />
                             <i><a href="/profile/{{product.user}}">{{product.user}}</a></i>
