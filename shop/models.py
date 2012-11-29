@@ -59,7 +59,7 @@ class Product (models.Model):
 
 class Order(models.Model):
     ORDER_STATUSES = (
-        ('or','Order Placed'),
+        ('op','Order Placed'),
         ('pr','Payment Received'),
         ('os','Order Shipped'),
         ('sr','Shipment Received'),

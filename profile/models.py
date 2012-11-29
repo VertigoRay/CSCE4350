@@ -62,7 +62,7 @@ class Billing(models.Model):
     pub_date = models.DateTimeField('published', auto_now_add=True)
 
     def __str__(self):
-        return "%s - %s" % (self.user, self.name)
+        return "%s - %s/%s" % (self.description, self.expirationm, self.expirationy)
 
 class Rating(models.Model):
     RATE = (

@@ -28,6 +28,11 @@
                         <a href="/shop/{{product.id}}/edit/" class="changelink">edit</a><br />
                         <a href="/shop/{{product.id}}/deactivate/" class="deletelink">remove</a>
                     </td>
+                    {% if product.sold %}
+                    <td>
+                        Sold: {{ product.sold }}
+                    </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
          </table>

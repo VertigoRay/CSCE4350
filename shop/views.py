@@ -1,22 +1,27 @@
+from datetime import datetime
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.forms import ModelForm
 from django.shortcuts import redirect, render, render_to_response, get_list_or_404, get_object_or_404
 from django.template import RequestContext
+from profile.models import *
 from shop.models import *
-
-class ProductBuyForm(ModelForm):
-    # AKA:  Order Form
-    # Auto generated form to create Order model.
-    class Meta:
-        model = Order
-        fields = ('billing',)
 
 class ProductAddForm(ModelForm):
     # Auto generated form to create Product model.
     class Meta:
         model = Product
         exclude = ('user','enabled','expiration','sold',)
+
+class ProductBuyForm(ModelForm):
+    def __init__(self,user,*args,**kwargs):
+        super (ProductBuyForm,self).__init__(*args,**kwargs) # populates the post
+        self.fields['billing'].queryset = Billing.objects.filter(user=user)
+
+    # Auto generated form to create Product model.
+    class Meta:
+        model = Order
+        fields = ('billing',)
 
 def patch_users_watch_lists(products, user):
     # NOTE: dicts are unordered, if you have any "order_by" in your queryset, it'll
@@ -112,20 +117,32 @@ def product_add(request):
 def product_buy(request, **kwargs):
     title = 'Buy Product'
     if request.method == 'POST':
-        form = ProductBuyForm(request.POST)
+        form = ProductBuyForm(request.user.id, request.POST)
         if form.is_valid():
             # Create a new Server object.
-            new_product = form.save(commit=False)
-            new_product.user = request.user
-            new_product.save()
-            return redirect('/shop/%s/' % new_product.id)
+            product = Product.objects.get(id=kwargs['product_id'])
+            order = form.save(commit=False)
+            order.user = request.user
+            order.product = product
+            order.status = 'op'
+            order.statusinfo = 'Processing payment ...'
+            order.save()
+            product.enabled = 0
+            product.sold = datetime.now()
+            product.save()
+            return redirect('/profile/%s/orders/' % request.user.username)
     else:
-        form = ProductBuyForm()
+        form = ProductBuyForm(user=request.user)
 
+    product = get_object_or_404(Product, id=kwargs['product_id'])
+    address = Address.objects.get(user=request.user)
     variables = RequestContext(request, {
         'title': title,
         'form': form,
-        'product': get_object_or_404(Product, id=kwargs['product_id']),
+        'product': product,
+        'address': address,
+        'condition': product.get_condition_display(),
+        'shiptype': product.get_shiptype_display(),
     })
     return render_to_response('shop/product_buy.html', variables)
 

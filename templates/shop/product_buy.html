@@ -7,10 +7,14 @@
     {{ block.super }}
     {% block object-tools %}{% endblock %}
 
-    <h2>Address</h2>
-    {{user.address}}
+    <h2>Shipping Address</h2>
+    <p><span class="helptext">Is relevant based on the <i>Shipping Method</i> of product.</span></p>
+    <p>{{ address.addr1 }}<br />
+    {% if address.addr2 %}{{ address.addr2 }}<br />{% endif %}
+    {{ address.city }}, {{ address.state }} {{ address.zipcode }}</p>
+    <h2>Billing Method</h2>
     <form action="/shop/{{product.id}}/buy/" method="post">{% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Submit" />
+        {{form.as_p}}
+        <input type="submit" value="Buy Now" />
     </form>
 {% endblock %}
