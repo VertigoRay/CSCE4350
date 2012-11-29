@@ -17,7 +17,7 @@
                     </td><td>
                         Condition:<br /> <i>{{watch.product.get_condition_display}}</i>
                     </td><td>
-                        <strong>${{ watch.product.price }}</strong><br />&nbsp;</i>
+                        <strong>${{ watch.product.price }}</strong><br />{{ watch.product.user.username }}&nbsp;</i>
                     </td><td>
                         <a href="/shop/{{ watch.product.id }}/buy/" class="addlink">buy</a><br />
                         <a href="/shop/watch/{{ watch.product.id }}/ignore/" class="deletelink">ignore</a>
