@@ -19,7 +19,12 @@
                     <td>
                         Condition:<br /><i>{{ order.product.get_condition_display }}</i>
                     </td>
-                    <td align="right">${{ order.product.price }}<br /><a href="/profile/{{ order.product.user.username }}">{{ order.product.user.username }}</a> <a href="/profile/{{ order.product.user.username }}/rate/">rate</a></td>
+                    <td align="right">
+                        <a href="/profile/{{ order.product.user.username }}">{{ order.product.user.username }}</a><br />
+                        ${{ order.product.price }}
+                    </td><td>
+                        <a href="/profile/{{ order.product.user.username }}/rate/" class="addlink">rate</a>
+                    </td>
                 </tr>
             {% endfor %}
          </table>

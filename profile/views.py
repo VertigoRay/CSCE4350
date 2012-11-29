@@ -9,7 +9,7 @@ class RateForm(ModelForm):
     # Auto generated form to create Product model.
     class Meta:
         model = Rating
-        exclude = ('seller','buyer',)
+        exclude = ('buyer','seller',)
 
 def index(request):
     title = 'Profile'
@@ -66,12 +66,14 @@ def products(request, username):
 def rate(request, username):
     title = 'Rate'
     if request.method == 'POST':
-        seller = username
-        buyer = 'cworley' # This needs to reference the current logged on user. Note:  'user.username' doesn't work.
         form = RateForm(request.POST)
         if form.is_valid():
             # Create a new Server object.
-            form.save()
+            new_rate = form.save(commit=False)
+            new_rate.buyer = request.user
+            new_rate.seller = get_object_or_404(User, username=username)
+            new_rate.save()
+            return redirect('/profile/%s/orders/' % request.user.username)
     else:
         form = RateForm()
 
