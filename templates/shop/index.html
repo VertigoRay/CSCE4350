@@ -30,7 +30,11 @@
                             <i><a href="/profile/{{product.user}}">{{product.user}}</a></i>
                         </td><td>
                             <a href="/shop/{{ product.id }}/buy/" class="addlink">buy</a><br />
-                            <a href="/shop/watch/{{ product.id }}/add/" class="addlink">watch</a> (doesn't toggle yet)
+                            {% if product.user_watch_lists %}
+                                <a href="/shop/watch/{{ product.id }}/ignore/" class="deletelink">ignore</a>
+                            {% else %}
+                                <a href="/shop/watch/{{ product.id }}/add/" class="addlink">watch</a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
