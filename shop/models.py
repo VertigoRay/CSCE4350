@@ -81,7 +81,7 @@ class Order(models.Model):
 
 class WatchList(models.Model):    
     user = models.ForeignKey(User)
-    product = models.ForeignKey(Product)
+    product = models.ForeignKey(Product, related_name="watch_lists")
     pub_date = models.DateTimeField('published', auto_now_add=True)
 
     class Meta:

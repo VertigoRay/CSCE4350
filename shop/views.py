@@ -11,6 +11,28 @@ class ProductAddForm(ModelForm):
         model = Product
         exclude = ('user','enabled','expiration','sold',)
 
+def patch_users_watch_lists(products, user):
+    # NOTE: dicts are unordered, if you have any "order_by" in your queryset, it'll
+    # be undone by creating this map, so unless you're paginating products here
+    # you're better off just sorting in python after the patching is done
+    product_map = dict((p.id, p) for p in products)
+    for product in product_map.values():
+        # this is called "monkey-patching", generally to be avoided but
+        # useful when you need it
+        product.user_watch_lists = []
+
+    # don't do this unless the list of products is fairly small, it creates a
+    # big nasty "in" clause in sql that can get really slow if there are a lot
+    # of ids.
+    watch_lists = WatchList.objects.filter(user=user, product__in=product_map.keys())
+
+    # .iterator() is nice to use when iterating over querysets once and
+    # only once since it doesn't load everything into memory at once
+    for watch_list in watch_lists.iterator():
+        product_map[watch_list.product_id].user_watch_lists.append(watch_list)
+
+    return product_map.values()
+
 def index(request):
     if 'q' in request.GET:
         products = Product.objects.filter(title__icontains=request.GET['q'])
@@ -31,15 +53,15 @@ def category(request, **kwargs):
             'title': '%s - %s' % (kwargs['pcategory'], kwargs['category']),
             'pcategory': kwargs['pcategory'],
             'category': kwargs['category'],
-            'products': get_list_or_404(Product.objects.filter(category__pid__name=kwargs['pcategory']), category__name=kwargs['category']),
+            'products': patch_users_watch_lists(get_list_or_404(Product.objects.filter(category__pid__name=kwargs['pcategory']), category__name=kwargs['category']), request.user),
         })
     else:
         variables = RequestContext(request, {
             'title': kwargs['category'],
             'category': kwargs['category'],
-            'products': get_list_or_404(Product, category__pid__name=kwargs['category']),
-            # 'products': get_list_or_404(Product, category__name=kwargs['category']),
+            'products': patch_users_watch_lists(Product.objects.filter(category__pid__name=kwargs['category']), request.user),
         })
+
     return render(request, 'shop/category.html', variables)
 
 def product(request, product_id):
