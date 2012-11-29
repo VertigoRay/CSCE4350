@@ -40,17 +40,27 @@
         {% endif %}
     {% else %}
         {% regroup category by pid as category_by_pid %}
+        <table>
+        <tr class="{{ rowcolors }}">
+        <td>
+        {% with count=0 col=1 %}    
         {% for p in category_by_pid %}
             {% if p.grouper %}
+                {{ count|add:"1" }}
+                {% if col=1 and count=4 %}</td><td>{{ col|add:"2" }}{% endif %}
+                {% if col=2 and count=8 %}</td><td>{{ col|add:"3" }}{% endif %}
                 <h2><a href="/shop/{{ p.grouper }}/">{{ p.grouper }}</a></h2>
                 <ul>
-                {% for c in p.list %}
-                    <li><a href="/shop/{{ p.grouper }}/{{ c.name }}/">{{ c.name }}</a></li>
-                {% endfor %}
+                    {% for c in p.list %}
+                        <li><a href="/shop/{{ p.grouper }}/{{ c.name }}/">{{ c.name }}</a></li>
+                    {% endfor %}       
                 </ul>
             {% endif %}
         {% endfor %}
+        {% endwith %}
+        </td>
+        </tr>    
+        </table>
     {% endif %}
-{% if category %}<h1>Category</h1>{{ category }}{% endif %}
 {% endblock %}
 {% block sidebar %}{% endblock %}
