@@ -27,7 +27,7 @@
                     </td>
                     {% if product.sold %}
                     <td>
-                        <strong>Sold</strong> to:{{ product.username }} <br /><i>{{ product.sold }}</i>
+                        <strong>Sold</strong> to:{{ product.order.user.username }} <br /><i>{{ product.sold }}</i>
                     </td>
                     {% else %}
                     <td>
